@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Chart from '../../charts/Chart';
 import url from '../../../api/urls';
 import AppContext from '../../../contexts/AppContext';
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import DisplayText from '../../DisplayText';
 import AdminContext from '../../../contexts/AdminContext';
 // import Map from '../../Map'
@@ -14,6 +14,8 @@ import AdminContext from '../../../contexts/AdminContext';
 // const darkModeColors = ['#005a76','#626ee3','#02203c']
 // const lightModeColors = ['#ff9933','#990099','#ffff00']
 import Table from '../../Table';
+import LineChart from '../../charts/Line';
+import getDarkClass from '../../../utils/getDarkClass';
 
 // function SimpleAction() {
 //   return (
@@ -59,7 +61,7 @@ const darkBorderModeColors = lighBordertModeColors
 
 function Dashboard(props) {
     const { theme } = useContext(AppContext)
-    const { registeredAgents, registeredStatesList, registeredMarkets, registeredRegions, registeredLocalGovs } = useContext(AdminContext)
+    const { registeredAgents, registeredStatesList, registeredMarkets, registeredRegions, registeredLocalGovs, commoditiesList } = useContext(AdminContext)
     
     return (
         <div>
@@ -68,16 +70,21 @@ function Dashboard(props) {
                 ChartType={Doughnut}
                 title="Submissions"
                 removeAt="allSubmissions"
-                url={url.submissionsStat}
+                    url={url.submissionsStat}
+                    className="subStat"
                 backgroundColor={theme === 'light' ? lightModeColors : darkModeColors}
                 borderColor={theme === 'light' ? lighBordertModeColors : darkBorderModeColors}
                 />
+                <div className={`stat_group sh sub_summary ${getDarkClass('dark-accent')}`}>
+                    <LineChart />
+                </div>
                 <div className="list">
                     <DisplayText link={url.agents.base} value={registeredAgents.length} title="Registered Agents" />
                     <DisplayText link={url.states} value={registeredStatesList.length} title="States" />
                     <DisplayText link={url.localGov} value={registeredLocalGovs.length} title="Local Governments" />
                     <DisplayText link={url.market} value={registeredMarkets.length} title="Markets" />
                     <DisplayText link={url.region} value={registeredRegions.length} title="Regions" />
+                    <DisplayText link={url.commodities} value={commoditiesList.length} title="Commodities" />
                 </div>
             </div>
         </div>

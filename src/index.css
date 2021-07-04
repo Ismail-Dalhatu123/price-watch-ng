@@ -110,6 +110,7 @@ nav {
   padding: 20px 10px;
   overflow: hidden;
   transition: 0.5s all ease-in-out;
+  overflow-y: auto;
 }
 nav.collaps {
   width: 60px;
@@ -124,6 +125,19 @@ header {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
+  z-index: 2;
+}
+.form_route {
+  width: 100%;
+  padding: 80px 20px;
+}
+.agent_img {
+  width: 200px;
+  height: 200px;
+  background-color: var(--gray);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .router_body {
   color: var(--dark-gray);
@@ -166,7 +180,7 @@ header {
   width: 100%;
   height: 70vw;
   background-color: var(--white);
-  border-radius: 30px;
+  border-radius: 5px;
   margin: 10px 0;
   padding: 30px;
 }
@@ -184,9 +198,10 @@ nav.collaps .nav_link span {
 .display_text {
   width: 100%;
   height: 200px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-weight: bold;
   color: var(--dark-accent-light);
+  margin: 10px;
 }
 .display_text h2 {
   font-weight: bolder;
@@ -224,11 +239,32 @@ nav.collaps .nav_link span {
   .list {
     flex: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     /* align-items: center; */
     flex-wrap: wrap;
     padding: 0 30px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
+  }
+}
+@media (min-width: 700px) {
+  .sub_summary {
+    max-width: 50vw;
+    height: 500px;
+  }
+  .form_route {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 2000px) {
+  .sub_summary {
+    max-width: 100vw;
+    height: auto;
+  }
+  .list {
+    justify-content: space-between;
   }
 }
 
@@ -243,7 +279,6 @@ nav.collaps .nav_link span {
   }
   .display_text {
     font-size: 20px;
-    margin-top: 10px;
   }
   .display_text h2 {
     font-size: 50px;
@@ -253,6 +288,15 @@ nav.collaps .nav_link span {
 @media (min-width: 400px) and (max-width: 600px) {
   header .user {
     padding-right: 12% !important;
+  }
+  .display_text {
+    margin: 10px 0;
+  }
+}
+@media (min-width: 800px) and (max-width: 1340px) {
+  .subStat {
+    flex: 1;
+    max-width: 500px;
   }
 }
 @media (min-width: 600px) and (max-width: 1600px) {
@@ -349,6 +393,31 @@ nav.collaps .nav_link span {
 }
 .dark-light {
   background-color: var(--dark-light);
+}
+#input_light {
+  color: var(--bg-dark);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#input_dark {
+  color: var(--white);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn_add {
+  width: auto;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  margin-left: auto;
+  margin-right: 10px;
+}
+.btn_add.dark-light {
+  border-color: var(--dark-light);
 }
 .loader {
   animation: spin 2s linear infinite;

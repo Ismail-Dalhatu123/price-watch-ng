@@ -37,6 +37,9 @@ import Agents from './routes/Agents';
 import States from './routes/States';
 import Regions from './routes/Regions';
 import Markets from './routes/Markets';
+import Commodities from './routes/Commodities';
+import Quantities from './routes/Quantities';
+import LocalGovs from './routes/LocalGov';
 // import LocalGovs from './routes/LocalGovs';
 // import Markets from './routes/Markets';
 // import Regions from './routes/Regions';
@@ -175,9 +178,9 @@ function Home(props) {
                                 <Route path={url.states} component={States} />
                                 <Route path={url.region} component={Regions} />
                                 <Route path={url.market} component={Markets} />
-                                {/* <Route path={url.localGov} component={LocalGovs} />
                                 <Route path={url.commodities} component={Commodities} />
-                                <Route path={url.quantities} component={Quantities} /> */}
+                                <Route path={url.localGov} component={LocalGovs} />
+                                <Route path={url.quantities} component={Quantities} />
                                 <Route exact path="/" component={Dashboard} />
                             </Switch>)}
                         </div>

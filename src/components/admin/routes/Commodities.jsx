@@ -3,20 +3,19 @@ import { useContext } from 'react';
 import AdminContext from '../../../contexts/AdminContext';
 import Table from '../../Table';
 
-function States() {
-    const { registeredStatesList, } = useContext(AdminContext)
+function Commodities(props) {
+    const { commoditiesList } = useContext(AdminContext)
     return (
         <div>
             <Table
-                title="States"
+                title="Commodities"
                 column={[
                     { title: 'ID', field: '_id' },
-                    { title: 'State Name', field: 'StateCode' },
-                    { title: 'State Code', field: 'StateName' },
+                    { title: 'Name', field: 'CommodityName' },
                 ]}
-                data={registeredStatesList} />
+                data={commoditiesList} />
         </div>
     );
 }
 
-export default States;
+export default Commodities;

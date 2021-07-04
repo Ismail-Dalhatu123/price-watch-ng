@@ -10,6 +10,7 @@ function States() {
             <Table
                 title="Regions"
                 column={[
+                    { title: 'ID', field: '_id' },
                     { title: 'Region Name', field: 'RegionName' },
                     { title: 'Region Code', field: 'RegionCode' },
                 ]}
