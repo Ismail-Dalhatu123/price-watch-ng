@@ -29,7 +29,8 @@ function Agents(props) {
             <AddAgent isVisivle={isVisble} setIsVisible={setIsVisible} />
             {!isVisble && <><div onClick={() => setIsVisible(true)} className={`btn_submit btn_add ${getDarkClass('dark-light')}`}>Add Agent</div>
             <Table
-                title="Agents"
+                    title="Agents"
+                    viewItem={() => {}}
                 column={[
                     { title: 'ID', field: '_id' },
                     { title: 'First Name', field: 'FirstName' },
