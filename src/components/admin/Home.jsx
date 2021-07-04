@@ -33,6 +33,10 @@ import { GET } from '../../api/methods';
 import { toast } from 'react-toastify';
 import Loader from '../Loader';
 import AdminContext from '../../contexts/AdminContext';
+import Agents from './routes/Agents';
+import States from './routes/States';
+import Regions from './routes/Regions';
+import Markets from './routes/Markets';
 // import LocalGovs from './routes/LocalGovs';
 // import Markets from './routes/Markets';
 // import Regions from './routes/Regions';
@@ -167,11 +171,11 @@ function Home(props) {
                         <Header />
                         <div className="routes">
                             {loading ? <Loader loading /> : (<Switch>
-                                {/* <Route path={url.agents.base} component={Agents} />
+                                <Route path={url.agents.base} component={Agents} />
                                 <Route path={url.states} component={States} />
-                                <Route path={url.localGov} component={LocalGovs} />
-                                <Route path={url.market} component={Markets} />
                                 <Route path={url.region} component={Regions} />
+                                <Route path={url.market} component={Markets} />
+                                {/* <Route path={url.localGov} component={LocalGovs} />
                                 <Route path={url.commodities} component={Commodities} />
                                 <Route path={url.quantities} component={Quantities} /> */}
                                 <Route exact path="/" component={Dashboard} />
