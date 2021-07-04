@@ -17,6 +17,8 @@ import Commodities from './routes/Commodities';
 import Quantities from './routes/Quantities';
 import LocalGovs from './routes/LocalGov';
 import Categories from './routes/Categories';
+import Admins from './routes/Admins';
+import decodeJWT from '../../utils/decodeJWT';
 
 function Home(props) {
     const [loading, setLoading] = useState()
@@ -28,6 +30,11 @@ function Home(props) {
     const [quantities, setQuantities] = useState([])
     const [categories, setCategories] = useState([])
     const [commoditiesList, setCommodities] = useState([])
+
+    useEffect(() => {
+        const token = decodeJWT()
+        if(!token.succes) window.location = '/'
+    },[])
 
     const loadStates = async (q = false) => {
         if (!q) {
@@ -170,6 +177,7 @@ function Home(props) {
                                 <Route path={url.localGov} component={LocalGovs} />
                                 <Route path={url.quantities} component={Quantities} />
                                 <Route path={url.categories} component={Categories} />
+                                <Route path={url.admins} component={Admins} />
                                 <Route exact path="/" component={Dashboard} />
                             </Switch>)}
                         </div>

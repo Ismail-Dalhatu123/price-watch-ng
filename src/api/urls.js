@@ -11,6 +11,7 @@ const url = {
   localGov: "/localGov",
   quantities: "/quantities",
   categories: "/categories",
+  admins: "/admin",
 };
 
 export default url;

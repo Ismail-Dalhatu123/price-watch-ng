@@ -44,7 +44,7 @@ function Login(props) {
         <PersonRoundedIcon fontSize="large" />
       </div>
       <div className="form_content">
-        <h3 className={`text-center mb-20 ${getDarkClass('dark-white')}`}>Admin Log in</h3>
+        <h3 className={`text-center mt-60 mb-20 ${getDarkClass('dark-white')}`}>Admin Log in</h3>
         <Form validationSchema={validationSchema} onSubmit={authenticate} initialValues={{ email: '', password: '' }}>
           <FormInput
             inputClass={getDarkClass('dark-white')}

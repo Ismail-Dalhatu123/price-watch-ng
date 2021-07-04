@@ -43,13 +43,13 @@ const tableIcons = {
   };
 
 
-function Table({ title, data, column, deleteItem = () => {}, editItem = () => {}, viewItem = false}) {
+function Table({ title, options = [], data, column, deleteItem = () => {}, editItem = () => {}, viewItem = false}) {
     const { theme } = React.useContext(AppContext)
   return (
       <MaterialTable
         icons={tableIcons}
         style={{ backgroundColor: theme === 'light' ? '#fff' : '#15314b', color: theme === 'light' ? '#021a31': '#fff' , }}
-        actions={viewItem ? [{
+        actions={options.length > 0 ? options : viewItem ? [{
             icon: tableIcons.ViewItem,
             tooltip: 'View',
             onClick: viewItem,

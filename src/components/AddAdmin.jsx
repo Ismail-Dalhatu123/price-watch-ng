@@ -7,8 +7,6 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import * as Yup from 'yup'
 import AppContext from '../contexts/AppContext';
 import getDarkClass from '../utils/getDarkClass';
-import AdminContext from '../contexts/AdminContext';
-import FromDrop from '../form/FromDrop';
 import { POST } from '../api/methods';
 import url from '../api/urls';
 import { toast } from 'react-toastify';
@@ -18,10 +16,6 @@ const validationSchema = Yup.object().shape({
     middleName: Yup.string().label('Last Name'),
     lastName: Yup.string().required().label('Middle Name'),
     email: Yup.string().email().required().label("Email"),
-    state: Yup.string().required().label('State'),
-    localGov: Yup.string().required().label('Local Government'),
-    phoneNumber: Yup.string().required().label('Phone Number'),
-    market: Yup.string().required().label('Market'),
     password: Yup.string()
     .required()
     .label("Password")
@@ -35,18 +29,19 @@ const validationSchema = Yup.object().shape({
   ),
 });
 
-function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
+function AddAdmin({ isVisivle = false, setIsVisible = () =>{}, load = () => {} }) {
     const { theme } = useContext(AppContext)
-    const { registeredStatesList, registeredLocalGovs, registeredMarkets, loadAgents } = useContext(AdminContext)
     if(!isVisivle) return null
     const registerAgent = async (data) => {
+        console.log(data)
         const cred = { ...data }
         delete cred['password2']
-        const res = await POST(url.agents.base, cred)
+        const res = await POST(url.admins, cred)
         if (!res.ok) return toast.error(`${data.firstName} Already Registered`)
         if (res.ok) {
             toast.info('Registered')
-            loadAgents()
+            load()
+            setIsVisible(false)
         }
     }
     return (
@@ -58,7 +53,7 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
                         >
                             <PersonRoundedIcon />
                         </div>
-                        <h3 className={`text-center ${getDarkClass('dark-white')}`}>Register Submission Agent</h3>
+                        <h3 className={`text-center ${getDarkClass('dark-white')}`}>Register New Admin</h3>
                         <div style={{fontWeight: 'bold', cursor: 'pointer', marginTop: 10}} onClick={() => setIsVisible(false)} className={`flex justify-center align-center mb-20`}>
                             cancel
                         </div>        
@@ -66,7 +61,7 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
                         <Form
                             validationSchema={validationSchema}
                             onSubmit={registerAgent}
-                            initialValues={{ firstName: '',phoneNumber: '', lastName: '', middleName: '', email: '', market: '', state: '',localGov: '', password: '', password2: '' }}>
+                            initialValues={{ firstName: '', lastName: '', middleName: '', email: '', password: '', password2: '' }}>
                                 <FormInput
                                     inputClass={getDarkClass('dark-white')}
                                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
@@ -82,37 +77,7 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
                                 <FormInput
                                     inputClass={getDarkClass('dark-white')}
                                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
-                                    type="number"
-                                    name="phoneNumber" placeholder="Phone Number" />
-                                <FormInput
-                                    inputClass={getDarkClass('dark-white')}
-                                    className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                                     name="email" placeholder="Email" />
-                                
-                                <FromDrop options={registeredStatesList.map(state => ({
-                                    value: state._id,
-                                    label: state.StateName
-                                }))} inputClass={getDarkClass('dark-white')}
-                                    className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
-                                    name="state" placeholder="State Name" />
-                                <FromDrop options={registeredLocalGovs.map(lg => ({
-                                    value: lg._id,
-                                    label: lg.Name,
-                                    depends: lg.State._id
-                                }))}
-                                    depends="state"
-                                    inputClass={getDarkClass('dark-white')}
-                                    className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
-                                    name="localGov" placeholder="Local Government" />
-                                <FromDrop options={registeredMarkets.map(mk => ({
-                                    value: mk._id,
-                                    label: mk.Name,
-                                    depends: mk.State._id
-                                    }))}
-                                    depends="state"
-                                    inputClass={getDarkClass('dark-white')}
-                                    className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
-                                    name="market" placeholder="Market" />
                                 <FormInput
                                     inputClass={getDarkClass('dark-white')}
                                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
@@ -129,4 +94,4 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
     );
 }
 
-export default AddAgent;
+export default AddAdmin;

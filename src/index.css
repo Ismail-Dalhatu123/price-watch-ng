@@ -170,6 +170,24 @@ header {
   cursor: pointer;
   margin-bottom: 10px;
 }
+.greetings {
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  background-color: var(--indigo);
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.greetings h2 {
+  margin-bottom: 10px;
+}
+.greetings .icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  cursor: pointer;
+}
 .map {
   width: 200px;
   height: 200px;
@@ -281,6 +299,9 @@ nav.collaps .nav_link span {
   }
   .display_text h2 {
     font-size: 50px;
+  }
+  .mt-60 {
+    margin-top: 60px;
   }
 }
 

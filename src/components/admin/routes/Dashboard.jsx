@@ -16,6 +16,7 @@ import AdminContext from '../../../contexts/AdminContext';
 import Table from '../../Table';
 import LineChart from '../../charts/Line';
 import getDarkClass from '../../../utils/getDarkClass';
+import Greetings from '../../Greetings';
 
 // function SimpleAction() {
 //   return (
@@ -73,6 +74,7 @@ function Dashboard(props) {
     
     return (
         <div>
+            <Greetings />
             <div className="list">
                     <DisplayText link={url.agents.base} value={registeredAgents.length} title="Registered Agents" />
                     <DisplayText link={url.states} value={registeredStatesList.length} title="States" />

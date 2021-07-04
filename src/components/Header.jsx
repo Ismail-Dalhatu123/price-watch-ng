@@ -3,6 +3,8 @@ import AppContext from '../contexts/AppContext';
 import ThemeToggler from './ThemeToggler';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import getDarkClass from '../utils/getDarkClass';
+import { Link } from 'react-router-dom';
+import url from '../api/urls';
 
 
 function Header(props) {
@@ -13,9 +15,9 @@ function Header(props) {
             <div className="user flex justify-space-between align-center">
                 <ThemeToggler />
                 <span className={getDarkClass('dark-gray-color')}>{user.FirstName} {user.LastName}</span>
-                <div className="user_icon flex justify-center align-center">
+                <Link to={url.admins} className="user_icon flex justify-center align-center">
                     <PersonRoundedIcon />
-                </div>
+                </Link>
             </div>
         </header>
     );
