@@ -12,7 +12,7 @@ function Header(props) {
             <h2 className={getDarkClass('.dark-gray-color')}>Price Watch</h2>
             <div className="user flex justify-space-between align-center">
                 <ThemeToggler />
-                <span className={getDarkClass('.dark-gray-color')}>{user.FirstName} {user.LastName}</span>
+                <span className={getDarkClass('dark-gray-color')}>{user.FirstName} {user.LastName}</span>
                 <div className="user_icon flex justify-center align-center">
                     <PersonRoundedIcon />
                 </div>
