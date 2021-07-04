@@ -248,7 +248,7 @@ nav.collaps .nav_link span {
 }
 @media (min-width: 700px) {
   .sub_summary {
-    max-width: 50vw;
+    max-width: calc(50vw - 100px);
     height: 500px;
   }
   .form_route {
