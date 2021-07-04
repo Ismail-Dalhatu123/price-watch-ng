@@ -1,26 +1,24 @@
 import React from 'react';
 import { useContext } from 'react';
 import AdminContext from '../../../contexts/AdminContext';
+import AddLGA from '../../AddLGA';
 import Table from '../../Table';
 
 function LocalGovs(props) {
-    const { registeredStatesList, registeredLocalGovs } = useContext(AdminContext)
-    const statesObj = {}
-    for (var i = 0; i < registeredStatesList.length; i++) {
-        const state = registeredStatesList[i]
-        statesObj[state['_id']] = state['StateName']
-    }
+    const { registeredLocalGovs } = useContext(AdminContext)
 
     return (
         <div>
+            <AddLGA />
             <Table
                 title="Local Governments"
                 column={[
                     { title: 'ID', field: '_id' },
                     { title: 'Name', field: 'Name' },
-                    { title: 'State', field: 'State', lookup: statesObj },
+                    { title: 'State', field: 'State', },
                 ]}
-                data={registeredLocalGovs.map(agent => ({ ...agent, State: agent.State['_id'] }))} />
+                data={registeredLocalGovs.map(agent => ({ ...agent, State: agent.State['StateName'] }))}
+            />
         </div>
     );
 }

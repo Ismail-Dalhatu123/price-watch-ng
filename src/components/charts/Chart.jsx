@@ -18,7 +18,7 @@ function Chart({ url, className , darkModeClassName = "dark-accent", removeAt, t
             const labels = Object.keys(items).filter(i => i !== removeAt)
             const datasets = [{
                 lable: `# of ${title}`,
-                data: labels.map(r => items[r] + Math.round(Math.random() * 10)),
+                data: labels.map(r => items[r]),
                 backgroundColor,
                 borderColor,
                 borderWidth

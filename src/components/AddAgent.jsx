@@ -50,7 +50,7 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
     }
     return (
         <div className="flex justify-center align-center">
-                    <div className={`form_route ${getDarkClass('bg-darkj')}`}>
+                    <div className={`form_route ${getDarkClass('bg-dark')}`}>
                         <div
                             className={`agent_img flex justify-center align-center ${getDarkClass('bg-dark')} `}
                             style={{backgroundColor: theme === 'light' ? '#fff': '#15314b', width: 100, height: 100, borderRadius: 50}}

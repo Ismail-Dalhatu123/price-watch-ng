@@ -49,8 +49,7 @@ function Table({ title, data, column, deleteItem = () => {}, editItem = () => {}
       <MaterialTable
         icons={tableIcons}
         style={{ backgroundColor: theme === 'light' ? '#fff' : '#15314b', color: theme === 'light' ? '#021a31': '#fff' , }}
-        actions={[
-            viewItem && {
+        actions={viewItem ? [{
             icon: tableIcons.ViewItem,
             tooltip: 'View',
             onClick: viewItem,
@@ -64,8 +63,16 @@ function Table({ title, data, column, deleteItem = () => {}, editItem = () => {}
             icon: tableIcons.Delete,
             tooltip: 'Delete',
             onClick: deleteItem
+            }] : [{
+            icon: tableIcons.Edit,
+            tooltip: 'Edit',
+            onClick: editItem
             },
-        ]}
+            {
+            icon: tableIcons.Delete,
+            tooltip: 'Delete',
+            onClick: deleteItem
+            },]}
         title={title}
         columns={column}
         data={data}        

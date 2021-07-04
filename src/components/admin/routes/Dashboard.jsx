@@ -46,6 +46,14 @@ import getDarkClass from '../../../utils/getDarkClass';
 //   )
 // }
 
+const generateArray = () => {
+    const opt = []
+    for (let i = 0; i <= 12;  i++) {
+        opt.push(Math.round(Math.random() * 10000))
+    }
+    return opt
+}
+
 const lightModeColors = [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -86,6 +94,23 @@ function Dashboard(props) {
                     <DisplayText link={url.region} value={registeredRegions.length} title="Regions" />
                     <DisplayText link={url.commodities} value={commoditiesList.length} title="Commodities" />
                 </div>
+            </div>
+            <div className={`compare flex jutify-center align-center start_group sh ${getDarkClass('dark-accent')}`}>
+                <LineChart
+                    style={{flex: 1,}}
+                    data={{
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        datasets: [
+                            {
+                                label: 'Price of iPhone 7 Market 1',
+                                data: generateArray(),
+                                fill: true,
+                                borderColor: 'rgb(153, 153, 0)',
+                                backgroundColor: 'rgba(153, 153, 0, 0.2)',
+                                borderWidth: 1
+                            },
+                        ],
+                    }} />
             </div>
         </div>
     );

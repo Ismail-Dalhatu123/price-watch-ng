@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormikContext } from "formik";
 import Error from "./Error";
-import Places from "../componnents/Places";
+import Places from "../components/Places";
 
 export default function FromPlaces({ name }) {
   const { setFieldTouched, errors, touched, setFieldValue, values } =

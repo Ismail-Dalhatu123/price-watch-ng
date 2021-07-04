@@ -10,6 +10,7 @@ const url = {
   market: "/market",
   localGov: "/localGov",
   quantities: "/quantities",
+  categories: "/categories",
 };
 
 export default url;
