@@ -13,6 +13,7 @@ const options = {
       },
         ],
     },
+    maintainAspectRatio: false
     
 };
 

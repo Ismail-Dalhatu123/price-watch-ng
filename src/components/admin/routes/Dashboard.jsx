@@ -69,34 +69,35 @@ const darkBorderModeColors = lighBordertModeColors
 
 function Dashboard(props) {
     const { theme } = useContext(AppContext)
-    const { registeredAgents, registeredStatesList, registeredMarkets, registeredRegions, registeredLocalGovs, commoditiesList } = useContext(AdminContext)
+    const { registeredAgents, categories, registeredStatesList, registeredMarkets, registeredRegions, registeredLocalGovs, commoditiesList } = useContext(AdminContext)
     
     return (
         <div>
-            <div className="carts">
-            <Chart
-                ChartType={Doughnut}
-                title="Submissions"
-                removeAt="allSubmissions"
-                    url={url.submissionsStat}
-                    className="subStat"
-                backgroundColor={theme === 'light' ? lightModeColors : darkModeColors}
-                borderColor={theme === 'light' ? lighBordertModeColors : darkBorderModeColors}
-                />
-                <div className={`stat_group sh sub_summary ${getDarkClass('dark-accent')}`}>
-                    <LineChart />
-                </div>
-                <div className="list">
+            <div className="list">
                     <DisplayText link={url.agents.base} value={registeredAgents.length} title="Registered Agents" />
                     <DisplayText link={url.states} value={registeredStatesList.length} title="States" />
                     <DisplayText link={url.localGov} value={registeredLocalGovs.length} title="Local Governments" />
                     <DisplayText link={url.market} value={registeredMarkets.length} title="Markets" />
                     <DisplayText link={url.region} value={registeredRegions.length} title="Regions" />
                     <DisplayText link={url.commodities} value={commoditiesList.length} title="Commodities" />
+                    <DisplayText link={url.commodities} value={categories.length} title="Categories" />
+                </div>
+            <div className="carts">
+                <Chart
+                    ChartType={Doughnut}
+                    title="Submissions"
+                    removeAt="allSubmissions"
+                    url={url.submissionsStat}
+                    className="subStat"
+                    backgroundColor={theme === 'light' ? lightModeColors : darkModeColors}
+                    borderColor={theme === 'light' ? lighBordertModeColors : darkBorderModeColors}
+                />
+                <div className={`stat_group sh sub_summary ${getDarkClass('dark-accent')}`}>
+                    <LineChart style={window.innerWidth > 700 ? {width: window.innerWidth * 0.64, height: 300} : {}} />
                 </div>
             </div>
             <div className={`compare flex jutify-center align-center start_group sh ${getDarkClass('dark-accent')}`}>
-                <LineChart
+                {/* <LineChart
                     style={{flex: 1,}}
                     data={{
                         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -110,7 +111,7 @@ function Dashboard(props) {
                                 borderWidth: 1
                             },
                         ],
-                    }} />
+                    }} /> */}
             </div>
         </div>
     );

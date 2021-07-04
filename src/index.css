@@ -221,17 +221,12 @@ nav.collaps .nav_link span {
   .login_form h3 {
     margin-top: 20px;
   }
-  .carts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .chart_cont {
+  /* .chart_cont {
     margin: 5px;
     width: 300px;
     height: 300px;
     padding: 30px;
-  }
+  } */
   .display_text {
     width: 200px;
     height: 100px;
@@ -239,32 +234,36 @@ nav.collaps .nav_link span {
   .list {
     flex: 1;
     display: flex;
-    justify-content: center;
-    /* align-items: center; */
+    justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0 30px;
-    /* padding-top: 10px; */
   }
 }
+.subStat {
+  width: 100%;
+  height: 100vw;
+}
+.sub_summary {
+  width: 100%;
+  max-height: 100vw;
+}
 @media (min-width: 700px) {
-  .sub_summary {
-    max-width: calc(50vw - 100px);
-    height: 500px;
-  }
   .form_route {
     width: 40%;
     margin-left: auto;
     margin-right: auto;
   }
-}
-
-@media (min-width: 2000px) {
-  .sub_summary {
-    max-width: 100vw;
-    height: auto;
+  .carts {
+    display: flex;
+    flex-wrap: wrap;
   }
-  .list {
-    justify-content: space-between;
+  .subStat {
+    width: 30%;
+    max-height: 400px;
+  }
+  .sub_summary {
+    width: 69%;
+    max-height: 400px;
+    margin-left: 1%;
   }
 }
 
@@ -293,12 +292,12 @@ nav.collaps .nav_link span {
     margin: 10px 0;
   }
 }
-@media (min-width: 800px) and (max-width: 1340px) {
+/* @media (min-width: 800px) and (max-width: 1340px) {
   .subStat {
     flex: 1;
     max-width: 500px;
   }
-}
+} */
 @media (min-width: 600px) and (max-width: 1600px) {
   header .user {
     padding-right: 12% !important;
