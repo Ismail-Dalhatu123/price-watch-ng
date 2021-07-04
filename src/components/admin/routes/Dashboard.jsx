@@ -80,7 +80,7 @@ function Dashboard(props) {
                     <DisplayText link={url.market} value={registeredMarkets.length} title="Markets" />
                     <DisplayText link={url.region} value={registeredRegions.length} title="Regions" />
                     <DisplayText link={url.commodities} value={commoditiesList.length} title="Commodities" />
-                    <DisplayText link={url.commodities} value={categories.length} title="Categories" />
+                    <DisplayText link={url.categories} value={categories.length} title="Categories" />
                 </div>
             <div className="carts">
                 <Chart

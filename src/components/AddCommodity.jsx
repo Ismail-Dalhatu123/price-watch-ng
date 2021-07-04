@@ -34,7 +34,7 @@ function AddCommodity({ isVisble = true, setIsVisible = () => {} }) {
                 style={{backgroundColor: theme === 'light' ? '#fff': '#15314b', width: 100, height: 100, borderRadius: 50}}>
                     <KitchenRoundedIcon />
             </div>
-            <h3 className={`text-center ${getDarkClass('dark-white')}`}>Register New Commodity</h3>
+            <h3 className={`text-center ${getDarkClass('dark-white')}`}>Add New Commodity</h3>
                         <div style={{fontWeight: 'bold', cursor: 'pointer', marginTop: 10}} onClick={() => setIsVisible(false)} className={`flex justify-center align-center mb-20`}>
                             cancel
                         </div>        

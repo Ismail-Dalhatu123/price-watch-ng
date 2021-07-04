@@ -34,9 +34,9 @@ function AddCategory({ isVisble = true, setIsVisible = () => {} }) {
                     <CategoryRoundedIcon />
             </div>
             <h3 className={`text-center ${getDarkClass('dark-white')}`}>Add New Category</h3>
-                        {/* <div style={{fontWeight: 'bold', cursor: 'pointer', marginTop: 10}} onClick={() => setIsVisible(false)} className={`flex justify-center align-center mb-20`}>
+                        <div style={{fontWeight: 'bold', cursor: 'pointer', marginTop: 10}} onClick={() => setIsVisible(false)} className={`flex justify-center align-center mb-20`}>
                             cancel
-                        </div>         */}
+                        </div>        
             <Form
                 validationSchema={validationSchema}
                 onSubmit={addCategory}
