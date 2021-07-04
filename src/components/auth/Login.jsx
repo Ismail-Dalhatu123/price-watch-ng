@@ -38,7 +38,7 @@ function Login(props) {
     restoreUser()
   }
 
-  return <div className={`container bg-white flex justify-center align-center ${getDarkClass('bg-dark')}`}>
+  return <div className={`container bg-light-gray flex justify-center align-center ${getDarkClass('bg-dark')}`}>
     <div className={`login_form ${getDarkClass('dark-accent')}`}>
       <div className={`user_img flex justify-center align-center ${getDarkClass('dark-indigo')}`}>
         <PersonRoundedIcon fontSize="large" />

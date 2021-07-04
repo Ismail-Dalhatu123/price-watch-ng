@@ -117,10 +117,17 @@ header {
   padding: 0 10px;
   width: 100% !important;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
 }
 .router_body {
   color: var(--dark-gray);
   flex: 1;
+  overflow-y: auto;
+}
+.routes {
+  padding: 10px;
+  padding-top: 90px;
 }
 .user_icon {
   cursor: pointer;
@@ -182,6 +189,27 @@ nav.collaps .nav_link span {
   .login_form h3 {
     margin-top: 20px;
   }
+  .carts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .chart_cont {
+    margin: 5px;
+    width: 300px;
+    height: 300px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  header h2 {
+    display: none;
+  }
+  header .user {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .icon {
@@ -196,7 +224,9 @@ nav.collaps .nav_link span {
   top: 10px;
   right: 10px;
 }
-
+.sh {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
 .text-center {
   text-align: center;
 }
