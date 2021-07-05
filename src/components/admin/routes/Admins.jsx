@@ -36,7 +36,7 @@ function Admins(props) {
                     { title: 'First Name', field: 'FirstName' },
                     { title: 'Middle Name', field: 'MiddleName' },
                     { title: 'Last Name', field: 'LastName' },
-                    { title: 'Email', field: 'FirstName' },
+                    { title: 'Email', field: 'Email' },
                 ]}
                 data={admins} /></>}
         </div>

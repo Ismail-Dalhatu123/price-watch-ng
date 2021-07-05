@@ -17,8 +17,8 @@ function States() {
                 title="States"
                 column={[
                     { title: 'ID', field: '_id' },
-                    { title: 'State Name', field: 'StateCode' },
-                    { title: 'State Code', field: 'StateName' },
+                    { title: 'State Name', field: 'StateName' },
+                    { title: 'State Code', field: 'StateCode' },
                     { title: 'Region', field: 'Region' },
                 ]}
                 data={registeredStatesList.map(state => ({...state, Region: state.Region.RegionName }))} /></>}

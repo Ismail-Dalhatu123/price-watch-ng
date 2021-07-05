@@ -29,7 +29,7 @@ function Login(props) {
 
   useEffect(() => {
     restoreUser()
-  })
+  },[])
   
   const authenticate = async (cred) => {
     const res = await AuthenticateUser(cred)

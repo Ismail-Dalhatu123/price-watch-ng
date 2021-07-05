@@ -17,7 +17,7 @@ function App(props) {
 
   useEffect(() => {
     restoreUser();
-  });
+  }, []);
 
   return (
     <AppContext.Provider value={{ theme, setTheme, user, setUser }}>
