@@ -66,7 +66,7 @@ function AddMarket({ isVisble = true, setIsVisible = () => {} }) {
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                     name="localGov" placeholder="Local Government" />
                 <FromPlaces name="location" />
-                <Submit title="Register Local Government" />
+                <Submit title="Registe Market" />
             </Form>
         </div>
     );

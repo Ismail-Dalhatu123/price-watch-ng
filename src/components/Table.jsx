@@ -21,30 +21,29 @@ import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import AppContext from '../contexts/AppContext';
 
-const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} color="secondary" ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} color="action" ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-    ViewItem: forwardRef((props, ref) => <VisibilityRoundedIcon {...props} color="action" ref={ref} />)
-  };
-
 
 function Table({ title, options = [], data, column, deleteItem = () => {}, editItem = () => {}, viewItem = false}) {
-    const { theme } = React.useContext(AppContext)
+  const { theme } = React.useContext(AppContext)
+  const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} color="secondary" ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
+    ViewItem: forwardRef((props, ref) => <VisibilityRoundedIcon {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />)
+  };
   return (
     <div className="table_cont">
         <MaterialTable
