@@ -95,7 +95,7 @@ function Dashboard(props) {
                     borderColor={theme === 'light' ? lighBordertModeColors : darkBorderModeColors}
                 />
                 <div className={`stat_group sh sub_summary ${getDarkClass('dark-accent')}`}>
-                    <LineChart style={window.innerWidth > 700 ? {width: window.innerWidth * 0.64, height: 300} : {}} />
+                    <LineChart style={window.innerWidth > 700 ? {width: window.innerWidth * 0.5, height: 300, marginLeft: 'auto', marginRight: 'auto'} : {}} />
                 </div>
             </div>
             <div className={`compare flex jutify-center align-center start_group sh ${getDarkClass('dark-accent')}`}>

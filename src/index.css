@@ -51,8 +51,7 @@ a {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 .user {
-  padding-right: 3%;
-  justify-content: flex-end !important;
+  justify-content: space-between;
 }
 .user_img {
   width: 120px;
@@ -121,11 +120,8 @@ header {
   height: 80px;
   background-color: var(--white);
   padding: 0 10px;
-  width: 100% !important;
+  /* width: 100%; */
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  z-index: 2;
 }
 .form_route {
   width: 100%;
@@ -141,12 +137,23 @@ header {
 }
 .router_body {
   color: var(--dark-gray);
+  height: 100vh;
   flex: 1;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
+/* .routes {
+  padding: 10px;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 80px);
+  overflow-y: auto;
+  background-color: red;
+} */
 .routes {
   padding: 10px;
-  padding-top: 90px;
+  padding-left: 20px;
+  height: calc(100% - 80px);
+  overflow-y: auto;
 }
 .user_icon {
   cursor: pointer;
@@ -172,6 +179,7 @@ header {
 }
 .greetings {
   padding: 30px;
+  max-width: 20vw;
   border-radius: 10px;
   position: relative;
   background-color: var(--indigo);
@@ -231,6 +239,9 @@ nav.collaps .nav_link span {
 .nav-dark .nav_link.active {
   background-color: var(--bg-dark);
 }
+.carts {
+  flex: 1;
+}
 @media (min-width: 600px) {
   .login_form {
     width: 400px;
@@ -264,6 +275,11 @@ nav.collaps .nav_link span {
   width: 100%;
   max-height: 100vw;
 }
+@media (max-width: 700px) {
+  .carts {
+    display: none;
+  }
+}
 @media (min-width: 700px) {
   .form_route {
     width: 40%;
@@ -285,14 +301,18 @@ nav.collaps .nav_link span {
   }
 }
 
+@media (max-width: 1000px) {
+  .greetings {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 500px) {
   header h2 {
     display: none;
   }
   header .user {
-    width: 100%;
-    justify-content: space-between !important;
-    padding-right: 20%;
+    flex: 1;
   }
   .display_text {
     font-size: 20px;
@@ -306,9 +326,9 @@ nav.collaps .nav_link span {
 }
 
 @media (min-width: 400px) and (max-width: 600px) {
-  header .user {
+  /* header .user {
     padding-right: 12% !important;
-  }
+  } */
   .display_text {
     margin: 10px 0;
   }
@@ -319,11 +339,11 @@ nav.collaps .nav_link span {
     max-width: 500px;
   }
 } */
-@media (min-width: 600px) and (max-width: 1600px) {
+/* @media (min-width: 600px) and (max-width: 1600px) {
   header .user {
     padding-right: 12% !important;
   }
-}
+} */
 
 .icon {
   width: 50px;

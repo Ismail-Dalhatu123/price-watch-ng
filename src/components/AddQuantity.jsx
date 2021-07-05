@@ -23,7 +23,7 @@ function AddQuantity({ isVisble = true, setIsVisible = () => {} }) {
     const { loadQuantities, commoditiesList } = useContext(AdminContext)
     const addQuantity = async (det) => {
         const res = await POST(url.quantities, det)
-        if (!res.ok) return toast.error(`${det.label} Already Registered`)
+        if (!res.ok) return toast.error(`${det.quantity} Already Registered`)
         if (res.ok) {
             setIsVisible()
             loadQuantities()
