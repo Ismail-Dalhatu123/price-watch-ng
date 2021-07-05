@@ -46,41 +46,43 @@ const tableIcons = {
 function Table({ title, options = [], data, column, deleteItem = () => {}, editItem = () => {}, viewItem = false}) {
     const { theme } = React.useContext(AppContext)
   return (
-      <MaterialTable
-        icons={tableIcons}
-        style={{ backgroundColor: theme === 'light' ? '#fff' : '#15314b', color: theme === 'light' ? '#021a31': '#fff' , }}
-        actions={options.length > 0 ? options : viewItem ? [{
-            icon: tableIcons.ViewItem,
-            tooltip: 'View',
-            onClick: viewItem,
-            },
-            {
-            icon: tableIcons.Edit,
-            tooltip: 'Edit',
-            onClick: editItem
-            },
-            {
-            icon: tableIcons.Delete,
-            tooltip: 'Delete',
-            onClick: deleteItem
-            }] : [{
-            icon: tableIcons.Edit,
-            tooltip: 'Edit',
-            onClick: editItem
-            },
-            {
-            icon: tableIcons.Delete,
-            tooltip: 'Delete',
-            onClick: deleteItem
-            },]}
-        title={title}
-        columns={column}
-        data={data}        
-        options={{
-            exportButton: true,
-            sorting: true
-        }}
-    />
+    <div className="table_cont">
+        <MaterialTable
+          icons={tableIcons}
+          style={{ backgroundColor: theme === 'light' ? '#fff' : '#15314b', color: theme === 'light' ? '#021a31': '#fff' , }}
+          actions={options.length > 0 ? options : viewItem ? [{
+              icon: tableIcons.ViewItem,
+              tooltip: 'View',
+              onClick: viewItem,
+              },
+              {
+              icon: tableIcons.Edit,
+              tooltip: 'Edit',
+              onClick: editItem
+              },
+              {
+              icon: tableIcons.Delete,
+              tooltip: 'Delete',
+              onClick: deleteItem
+              }] : [{
+              icon: tableIcons.Edit,
+              tooltip: 'Edit',
+              onClick: editItem
+              },
+              {
+              icon: tableIcons.Delete,
+              tooltip: 'Delete',
+              onClick: deleteItem
+              },]}
+          title={title}
+          columns={column}
+          data={data}        
+          options={{
+              exportButton: true,
+              sorting: true
+          }}
+      />
+    </div>
   )
 }
 

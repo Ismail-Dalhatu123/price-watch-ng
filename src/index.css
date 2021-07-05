@@ -149,6 +149,10 @@ header {
   overflow-y: auto;
   background-color: red;
 } */
+.table_cont {
+  flex: 1;
+  max-width: calc(100vw - 200px);
+}
 .routes {
   padding: 10px;
   padding-left: 20px;
