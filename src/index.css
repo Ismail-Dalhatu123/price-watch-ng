@@ -468,6 +468,9 @@ nav.collaps .nav_link span {
 .loader {
   animation: spin 2s linear infinite;
 }
+.dark-light-color {
+  color: var(--white);
+}
 .compare {
   flex: 1;
   width: 100%;

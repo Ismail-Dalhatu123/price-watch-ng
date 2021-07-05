@@ -22,7 +22,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import AppContext from '../contexts/AppContext';
 
 
-function Table({ title, options = [], data, column, deleteItem = () => {}, editItem = () => {}, viewItem = false}) {
+function Table({ title, options = [], data, column, deleteItem = () => {}, editItem = () => {}}) {
   const { theme } = React.useContext(AppContext)
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} color={theme === 'light' ? "action": "primary"} />),
@@ -49,12 +49,10 @@ function Table({ title, options = [], data, column, deleteItem = () => {}, editI
         <MaterialTable
           icons={tableIcons}
           style={{ backgroundColor: theme === 'light' ? '#fff' : '#15314b', color: theme === 'light' ? '#021a31': '#fff' , }}
-          actions={options.length > 0 ? options : viewItem ? [{
-              icon: tableIcons.ViewItem,
-              tooltip: 'View',
-              onClick: viewItem,
-              },
-              {
+        actions={options.length > 0 ? options.map(opt => ({
+          ...opt,
+          icon: tableIcons[opt.icon]
+          })) : [{
               icon: tableIcons.Edit,
               tooltip: 'Edit',
               onClick: editItem
@@ -63,16 +61,7 @@ function Table({ title, options = [], data, column, deleteItem = () => {}, editI
               icon: tableIcons.Delete,
               tooltip: 'Delete',
               onClick: deleteItem
-              }] : [{
-              icon: tableIcons.Edit,
-              tooltip: 'Edit',
-              onClick: editItem
-              },
-              {
-              icon: tableIcons.Delete,
-              tooltip: 'Delete',
-              onClick: deleteItem
-              },]}
+              },] }
           title={title}
           columns={column}
           data={data}        

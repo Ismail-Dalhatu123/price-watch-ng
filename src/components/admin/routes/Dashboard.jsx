@@ -5,47 +5,9 @@ import AppContext from '../../../contexts/AppContext';
 import { Doughnut, Line } from "react-chartjs-2";
 import DisplayText from '../../DisplayText';
 import AdminContext from '../../../contexts/AdminContext';
-// import Map from '../../Map'
-// import getDarkClass from '../../../utils/getDarkClass';
-// import Places from '../../Places'
-// import { Button } from '@material-ui/core'
-// import MaterialTable from '../components/MateriaTable'
-
-// const darkModeColors = ['#005a76','#626ee3','#02203c']
-// const lightModeColors = ['#ff9933','#990099','#ffff00']
-import Table from '../../Table';
 import LineChart from '../../charts/Line';
 import getDarkClass from '../../../utils/getDarkClass';
 import Greetings from '../../Greetings';
-
-// function SimpleAction() {
-//   return (
-//     <MaterialTable
-//       title="Simple Action Preview"
-//       columns={[
-//         { title: 'Name', field: 'name' },
-//         { title: 'Surname', field: 'surname' },
-//         { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-//         {
-//           title: 'Birth Place',
-//           field: 'birthCity',
-//           lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-//         },
-//       ]}
-//       data={[
-//         { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//         { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-//       ]}        
-//       actions={[
-//         {
-//           icon: 'save',
-//           tooltip: 'Save User',
-//           onClick: (event, rowData) => alert("You saved " + rowData.name)
-//         }
-//       ]}
-//     />
-//   )
-// }
 
 const generateArray = () => {
     const opt = []
@@ -56,15 +18,15 @@ const generateArray = () => {
 }
 
 const lightModeColors = [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(255, 206, 86, 0.2)',
 ]
 const darkModeColors = lightModeColors
 const lighBordertModeColors = [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 99, 132, 1)',
+    'rgba(255, 206, 86, 1)',
 ]
 const darkBorderModeColors = lighBordertModeColors
 

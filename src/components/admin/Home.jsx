@@ -19,6 +19,7 @@ import LocalGovs from './routes/LocalGov';
 import Categories from './routes/Categories';
 import Admins from './routes/Admins';
 import decodeJWT from '../../utils/decodeJWT';
+import Submissions from './routes/Submissions';
 
 function Home(props) {
     const [loading, setLoading] = useState()
@@ -178,6 +179,7 @@ function Home(props) {
                                 <Route path={url.quantities} component={Quantities} />
                                 <Route path={url.categories} component={Categories} />
                                 <Route path={url.admins} component={Admins} />
+                                <Route path={url.agents.submissions.base} component={Submissions} />
                                 <Route exact path="/" component={Dashboard} />
                             </Switch>)}
                         </div>

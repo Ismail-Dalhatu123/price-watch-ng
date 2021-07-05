@@ -17,3 +17,21 @@ export const POST = async (url, params = {}, axiosConfig = {}) => {
     return { ok: false, error };
   }
 };
+
+export const PATCH = async (url, params = {}, axiosConfig = {}) => {
+  try {
+    const response = await client.patch(url, params, axiosConfig);
+    return { response, ok: true };
+  } catch (error) {
+    return { ok: false, error };
+  }
+};
+
+export const DELETE = async (url, params = {}, axiosConfig = {}) => {
+  try {
+    const response = await client.delete(url, params, axiosConfig);
+    return { response, ok: true };
+  } catch (error) {
+    return { ok: false, error };
+  }
+};

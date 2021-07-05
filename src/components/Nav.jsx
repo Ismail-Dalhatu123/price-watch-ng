@@ -14,6 +14,7 @@ import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import KitchenRoundedIcon from '@material-ui/icons/KitchenRounded';
 import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded';
+import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
 
 
 function Nav(props) {
@@ -25,7 +26,7 @@ function Nav(props) {
     }, [mathc])
     return (
         <nav className={`${isCollaps ? 'collaps': ''} ${getDarkClass('dark-accent nav-dark')}`}>
-            <Link to="/" className={`nav_link ${getDarkClass('dark-accent-light')} ${!ac.includes(url.agents.base) && !ac.includes(url.market) && !ac.includes(url.admins) && !ac.includes(url.categories) && !ac.includes(url.quantities) && !ac.includes(url.commodities) && !ac.includes(url.localGov) && !ac.includes(url.region) && !ac.includes(url.states) ? "active" : ""}`}>
+            <Link to="/" className={`nav_link ${getDarkClass('dark-accent-light')} ${!ac.includes(url.agents.base) && !ac.includes(url.market) && !ac.includes(url.admins) && !ac.includes(url.categories) && !ac.includes(url.quantities) && !ac.includes(url.commodities) && !ac.includes(url.localGov) && !ac.includes(url.region) && !ac.includes(url.states) && !ac.includes(url.agents.submissions.base) ? "active" : ""}`}>
                 <div className="nav_icon flex flex-center align-center justify-center">
                     <DashboardRoundedIcon />
                 </div>
@@ -39,6 +40,14 @@ function Nav(props) {
                 </div>
                 <div className="text">
                     <span>Agents</span>
+                </div>
+            </Link>
+            <Link to={url.agents.submissions.base} className={`nav_link ${getDarkClass('dark-accent-light')} ${ac.includes(url.submissionsStat) ? "active" : ""}`}>
+                <div className="nav_icon flex flex-center align-center justify-center">
+                    <ViewListRoundedIcon />
+                </div>
+                <div className="text">
+                    <span>Submissions</span>
                 </div>
             </Link>
             <Link to={url.states} className={`nav_link ${getDarkClass('dark-accent-light')} ${ac.includes(url.states) ? "active" : ""}`}>
