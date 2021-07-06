@@ -23,8 +23,8 @@ const LineChart = ({ style = {}, data = {
     {
       label: 'No. of Submissions',
       data: [12, 19, 3, 5, 2, 3, 14, 5, 0, 14, 24, 69],
-      fill: false,
-      backgroundColor: 'rgb(255, 0, 0)',
+      fill: true,
+      backgroundColor: 'rgba(255, 0, 0, 0.2)',
       borderColor: 'rgba(255, 0, 0, 0.2)',
     },
   ],

@@ -8,6 +8,7 @@ import AdminContext from '../../../contexts/AdminContext';
 import LineChart from '../../charts/Line';
 import getDarkClass from '../../../utils/getDarkClass';
 import Greetings from '../../Greetings';
+import Compare from '../../Compare';
 
 const generateArray = () => {
     const opt = []
@@ -61,6 +62,7 @@ function Dashboard(props) {
                 </div>
             </div>
             <div className={`compare flex jutify-center align-center start_group sh ${getDarkClass('dark-accent')}`}>
+                <Compare />
                 {/* <LineChart
                     style={{flex: 1,}}
                     data={{
