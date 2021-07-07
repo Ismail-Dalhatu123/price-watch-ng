@@ -18,7 +18,7 @@ import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
 
 
 function Nav(props) {
-    const [isCollaps, setIsCollaps] = useState(true)
+    const [isCollaps, setIsCollaps] = useState(false)
     const [ac,setAc] = useState("")
     const mathc = useRouteMatch()
     useEffect(() => {

@@ -1,5 +1,8 @@
 import axios from "axios";
 
+//https://price-watch-backend.herokuapp.com/
+//http://localhost:3005
+
 const client = axios.create({
   baseURL: "https://price-watch-backend.herokuapp.com/",
   headers: {

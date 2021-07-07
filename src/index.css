@@ -312,15 +312,19 @@ nav.collaps .nav_link span {
   }
 }
 
-.date_input {
+.date_input,
+.select,
+.options_list {
   padding: 15px 20px;
   border-radius: 5px;
   border: 1px solid var(--gray);
   outline: none;
   margin: 5px 0;
+  width: 100%;
+  height: 50px;
 }
 .options {
-  width: calc(100vw - 300px) !important;
+  /* width: calc(100vw - 300px) !important; */
   margin-left: auto;
   margin-right: auto;
   height: 150px;
@@ -331,13 +335,88 @@ nav.collaps .nav_link span {
 option {
   padding: 200px;
 }
-
+.dates {
+  width: 13%;
+  margin: 0 1%;
+}
+.selected_quantities {
+  flex: 1;
+  height: 150px;
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--gray);
+  background-color: var(--white);
+}
+.selected_markets {
+  width: 60%;
+  height: 100%;
+  overflow-y: auto;
+}
+.check {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.selected_quant {
+  width: 40%;
+  height: 100%;
+  overflow-y: auto;
+}
+.options_list h4 {
+  padding: 10px;
+  border-bottom: 1px solid var(--gray);
+  cursor: pointer;
+}
 .dark_input_date {
   background-color: var(--bg-dark);
   border-color: var(--bg-dark);
   color: var(--white);
 }
-
+.options_list {
+  background-color: var(--white);
+}
+.options_list.dark_option_list {
+  background-color: var(--dark-accent);
+}
+.options_list.dark_option_list,
+.dark_option_list h4 {
+  border-color: var(--bg-dark);
+}
+.select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.options_list {
+  width: 100%;
+  height: auto !important;
+  max-height: 200px !important;
+  overflow-y: auto;
+  position: absolute;
+  top: 55px;
+  z-index: 200;
+}
+.options_list input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  outline: none;
+}
+.options_list h4.option_active,
+.options_list h4:hover {
+  background-color: var(--gray-dark);
+  color: var(--white);
+  border-radius: 5px;
+}
+.options_list.dark_option_list input {
+  background-color: var(--dark-accent-light);
+  border-color: var(--dark-accent-light);
+  color: var(--white);
+}
 @media (max-width: 1000px) {
   .greetings {
     max-width: 100%;
@@ -381,7 +460,14 @@ option {
     padding-right: 12% !important;
   }
 } */
-
+.compare_op {
+  background-color: var(--white);
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.compare_op_dark {
+  background-color: var(--bg-dark);
+}
 .icon {
   width: 50px;
   height: 50px;
@@ -460,13 +546,14 @@ option {
   background-color: var(--dark-gray);
 }
 .btn {
+  width: 100%;
+  height: 50px;
   background-color: var(--indigo);
-  margin-left: 1%;
   border-radius: 5px;
   color: var(--white);
   font-weight: bold;
   cursor: pointer;
-  padding: 15px 30px;
+  margin-top: 10px;
 }
 .btn_submit.dark-indigo {
   border: 1px solid var(--indigo);
@@ -519,7 +606,7 @@ option {
   margin-bottom: 50px;
   display: flex;
   justify-content: center;
-  align-items: c;
+  align-items: center;
 }
 .plotter {
   flex: 1;

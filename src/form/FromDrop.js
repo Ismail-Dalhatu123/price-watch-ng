@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormikContext } from "formik";
 import Error from "./Error";
+import CustomSelect from "../components/CustomSelect";
 
 export default function FromDrop({
   name,
@@ -12,10 +13,21 @@ export default function FromDrop({
 }) {
   const { setFieldTouched, errors, touched, setFieldValue, values } =
     useFormikContext();
+  console.log(depends);
   return (
     <>
-      <div className={`form_input flex ${className}`}>
-        <select
+      <CustomSelect
+        className={`form_input flex ${className}`}
+        options={
+          depends !== false
+            ? options.filter((i) => i.depends === values[depends])
+            : options
+        }
+        title={others.placeholder}
+        onSelect={(val) => setFieldValue(name, val)}
+      />
+      <div>
+        {/* <select
           style={{ color: "#475f7c" }}
           className={`input ${inputClass}`}
           onBlur={() => setFieldTouched(name)}
@@ -36,7 +48,7 @@ export default function FromDrop({
                   {o.label}
                 </option>
               ))}
-        </select>
+        </select> */}
       </div>
       <Error error={errors[name]} touched={touched[name]} />
     </>
