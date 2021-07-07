@@ -17,7 +17,7 @@ function Commodities(props) {
             <Table
                 title="Commodities"
                 column={[
-                    { title: 'ID', field: '_id' },
+                    // { title: 'ID', field: '_id' },
                     { title: 'Name', field: 'CommodityName' },
                     { title: 'Category', field: 'Category' },
                 ]}

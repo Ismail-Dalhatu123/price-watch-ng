@@ -69,7 +69,7 @@ function Submissions(props) {
                     },
                 ]}
                 title="Added Submissions" column={[
-                    {title: 'ID', field: '_id'},
+                    // {title: 'ID', field: '_id'},
                     { title: 'Price', field: 'Price' },
                     { title: 'Commodity', field: 'CommodityID' },
                     { title: 'Quantity', field: 'Quantity' },
@@ -111,7 +111,7 @@ function Submissions(props) {
                     },
                 ]}
                 title="Rejected Submissions" column={[
-                    {title: 'ID', field: '_id'},
+                    // {title: 'ID', field: '_id'},
                     { title: 'Price', field: 'Price' },
                     { title: 'Commodity', field: 'CommodityID' },
                     { title: 'Quantity', field: 'Quantity' },
@@ -153,7 +153,7 @@ function Submissions(props) {
                     },
                 ]}
                 title="Approved Submissions" column={[
-                    {title: 'ID', field: '_id'},
+                    // {title: 'ID', field: '_id'},
                     { title: 'Price', field: 'Price' },
                     { title: 'Commodity', field: 'CommodityID' },
                     { title: 'Quantity', field: 'Quantity' },

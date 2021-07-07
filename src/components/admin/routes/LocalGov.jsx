@@ -17,7 +17,7 @@ function LocalGovs(props) {
             <Table
                 title="Local Governments"
                 column={[
-                    { title: 'ID', field: '_id' },
+                    // { title: 'ID', field: '_id' },
                     { title: 'Name', field: 'Name' },
                     { title: 'State', field: 'State', },
                 ]}

@@ -15,7 +15,7 @@ function Markets(props) {
             <Table
                 title="Markets"
                 column={[
-                    { title: 'ID', field: '_id' },
+                    // { title: 'ID', field: '_id' },
                     { title: 'Name', field: 'Name' },
                     { title: 'State', field: 'State' },
                     { title: 'L G A', field: 'LocalGov' },

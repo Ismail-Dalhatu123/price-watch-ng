@@ -17,7 +17,7 @@ function Quantities(props) {
             <Table
                 title="Quantities"
                 column={[
-                    { title: 'ID', field: '_id' },
+                    // { title: 'ID', field: '_id' },
                     { title: 'Quantity', field: 'Quantity' },
                     { title: 'Commodity', field: 'Commodity' },
                 ]}

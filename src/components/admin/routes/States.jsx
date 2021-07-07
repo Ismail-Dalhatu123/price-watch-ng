@@ -16,7 +16,7 @@ function States() {
             <Table
                 title="States"
                 column={[
-                    { title: 'ID', field: '_id' },
+                    // { title: 'ID', field: '_id' },
                     { title: 'State Name', field: 'StateName' },
                     { title: 'State Code', field: 'StateCode' },
                     { title: 'Region', field: 'Region' },
