@@ -5,10 +5,46 @@ import AdminContext from '../contexts/AdminContext';
 import getDarkClass from '../utils/getDarkClass';
 import LineChart from './charts/Line';
 import CustomSelect from './CustomSelect';
+import Loader from './Loader';
+import { months as monthsInYear } from '../utils/days'
+
+const generateArray = () => {
+    const opt = []
+    for (let i = 0; i <= 12;  i++) {
+        opt.push(Math.round(Math.random() * 1000))
+    }
+    return opt
+}
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',1)';
+}
+    
+function dateRange(startDate, endDate) {
+    var start      = startDate.split('-');
+    var end        = endDate.split('-');
+    var startYear  = parseInt(start[0]);
+    var endYear    = parseInt(end[0]);
+    var dates      = [];
+
+    for(var i = startYear; i <= endYear; i++) {
+        var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+        var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+        for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+        var month = j+1;
+        var displayMonth = month < 10 ? '0'+month : month;
+        dates.push([i, displayMonth, '01'].join('-'));
+        }
+    }
+    return dates;
+}
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 function Compare(props) {
-    const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
     const [selectedRegion, setSelectedRegion] = useState('')
     const [selectedState, setSelectedState] = useState('')
     const [selectedLGA, setSelectedLGA] = useState('')
@@ -20,6 +56,9 @@ function Compare(props) {
     const [selectedMarkets, setSelectedMarkets] = useState([])
     const [activeQuantities, setActiveQuantities] = useState([])
     const [selectedQuantities, setSelectedQuantities] = useState([])
+    const [plotData, setPlotData] = useState({ labels: [], datasets: [] })
+    const [monthsList, setMonthsList] = useState([])
+    const [loading, setLoading] = useState(false)
     const {
         registeredRegions,
         registeredStatesList,
@@ -29,6 +68,48 @@ function Compare(props) {
         commoditiesList,
         registeredLocalGovs
     } = useContext(AdminContext)
+    const plot = () => {
+        const months = dateRange(startDate, endDate)
+        const labels = months.map(d => ({label:`${monthsInYear[new Date(d).getMonth()]} ${new Date(d).getFullYear()}`, value: d}))
+        // const datasets = labels.map(l => {
+        //     return {
+        //         label: 'Price of Rice at Market 1',
+        //         data: generateArray(),
+        //         fill: false,
+        //         backgroundColor: 'rgba(0, 0, 255, 0.2)',
+        //         borderColor: 'rgba(0, 0, 255, 0.2)',
+        //     }
+        // })
+        //for market generate obj -> data get average price for each month
+        // const datasets = [{
+        //     label: 'Price of Rice at Market 3',
+        //     data: months.map(m => randomIntFromInterval(10000, 13000)),
+        //     fill: false,
+        //     backgroundColor: random_rgba(),
+        //     borderColor: random_rgba(),
+        // }]
+        const datasets = []
+        for (let i = 0; i < activeMarkets.length; i++) {
+            const mkt = registeredMarkets.find(m => m._id === activeMarkets[i]);
+            for (let j = 0; j < activeQuantities.length; j++) {
+                const qnt = quantities.find(q => q._id === activeQuantities[j]);
+                const data = []
+                for (let k = 0; k < labels.length; k++) {
+                    const m = labels[k];
+                    data.push(randomIntFromInterval(10000, 13000))
+                }
+                datasets.push({
+                    label: `Price of ${qnt.Quantity} at ${mkt.Name} | ${mkt.LocalGov.Name} | ${mkt.State.StateName}`,
+                    data,
+                    fill: false,
+                    backgroundColor: random_rgba(),
+                    borderColor: random_rgba(),
+                })
+            }
+        }
+        setMonthsList(labels)
+        setPlotData({datasets, labels: labels.map(m => m.label)})
+    }
     return (
         <div>
             <div className="options">
@@ -72,7 +153,7 @@ function Compare(props) {
                             setActiveMarktes([val, ...activeMarkets])
                             setSelectedMarkets([val, ...activeMarkets])
                         }}
-                        options={registeredMarkets.filter(s => s.LocalGov._id === selectedLGA).map(op => ({ value: op._id, label: op.Name }))}
+                        options={registeredMarkets.filter(s => s.LocalGov._id === selectedLGA && !selectedMarkets.includes(s._id)).map(op => ({ value: op._id, label: op.Name }))}
                         title="Select Market" />
                     {/* <select onChange={(e) => e.target.value ? setSelectedMarket(e.target.value) : {}} className={`date_input ${getDarkClass('dark_input_date')}`}>
                         <option value="">Select Market</option>
@@ -112,14 +193,16 @@ function Compare(props) {
                             setActiveQuantities([val, ...activeQuantities])
                             setSelectedQuantities([val, ...selectedQuantities])
                         }}
-                        options={selectedCommodity ? quantities.filter(cm => cm.Commodity._id === selectedCommodity).map(op => ({ value: op._id, label: op.Quantity })) : []}
+                        options={selectedCommodity ? quantities.filter(cm => cm.Commodity._id === selectedCommodity && !selectedQuantities.includes(cm._id)).map(op => ({ value: op._id, label: op.Quantity })) : []}
                         title="Select Quantity" />
                     <br />
                     <div className="flex">
-                        <div className="btn flex justify-center align-center">Plot</div>
+                        <div onClick={plot} className="btn flex justify-center align-center">
+                            {loading ? <Loader loading={loading} /> : 'Plot'}
+                        </div>
                     </div>
                 </div>
-                <div className="selected_quantities">
+                <div className={`selected_quantities ${getDarkClass('bg-dark bg-border-dark')}`}>
                     <div className="selected_markets">
                         {selectedMarkets.map(mkt => (
                             <div className="mak flex">
@@ -159,10 +242,39 @@ function Compare(props) {
                 </div>
             </div>
             <div className="plotter">
-                <LineChart style={window.innerWidth > 700 ? {width: window.innerWidth * 0.8, height: window.innerHeight - 350, marginLeft: 'auto', marginRight: 'auto', marginBottom: 50} : {}} />
+                {/* <CustomSelect onSelect={(val) => console.log(val)} title="Select Month" options={monthsList} /> */}
+                <LineChart data={plotData} style={window.innerWidth > 700 ? {width: window.innerWidth * 0.8, height: window.innerHeight - 350, marginLeft: 'auto', marginRight: 'auto', marginBottom: 50} : {}} />
             </div>
         </div>
     );
 }
 
 export default Compare;
+
+
+// {
+//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+//   datasets: [
+//     {
+//       label: 'Price of Rice at Market',
+//       data: generateArray(),
+//       fill: false,
+//       backgroundColor: 'rgba(255, 0, 0, 0.2)',
+//       borderColor: 'rgba(255, 0, 0, 0.2)',
+//     },
+//     {
+//       label: 'Price of Rice at Market 2',
+//       data: generateArray(),
+//       fill: false,
+//       backgroundColor: 'rgba(0, 255, 0, 0.2)',
+//       borderColor: 'rgba(0, 255, 0, 0.2)',
+//     },
+//     {
+//       label: 'Price of Rice at Market 3',
+//       data: generateArray(),
+//       fill: false,
+//       backgroundColor: 'rgba(0, 0, 255, 0.2)',
+//       borderColor: 'rgba(0, 0, 255, 0.2)',
+//     },
+//   ],
+// }

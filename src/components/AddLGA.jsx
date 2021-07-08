@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import { POST } from '../api/methods';
 import url from '../api/urls';
 import AdminContext from '../contexts/AdminContext';
-import FromDrop from '../form/FromDrop'
+import FormDrop from '../form/FormDrop'
 import HomeWorkRoundedIcon from '@material-ui/icons/HomeWorkRounded';
 import { toast } from 'react-toastify';
 
@@ -47,7 +47,7 @@ function AddLGA({ isVisble = true, setIsVisible = () => {} }) {
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                     name="name" placeholder="Name" />
-                <FromDrop options={registeredStatesList.map(state => ({
+                <FormDrop options={registeredStatesList.map(state => ({
                     value: state._id,
                     label: state.StateName
                 }))} inputClass={getDarkClass('dark-white')}

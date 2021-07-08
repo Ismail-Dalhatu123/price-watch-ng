@@ -11,7 +11,7 @@ import AdminContext from '../contexts/AdminContext';
 import FromPlaces from '../form/FormPlaces';
 import { toast } from 'react-toastify';
 import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
-import FromDrop from '../form/FromDrop';
+import FormDrop from '../form/FormDrop';
 
 const validationSchema = Yup.object().shape({
   state: Yup.string().required().label("State"),
@@ -50,13 +50,13 @@ function AddMarket({ isVisble = true, setIsVisible = () => {} }) {
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                     name="name" placeholder="Name" />
-                <FromDrop options={registeredStatesList.map(state => ({
+                <FormDrop options={registeredStatesList.map(state => ({
                     value: state._id,
                     label: state.StateName
                 }))} inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                     name="state" placeholder="State Name" />
-                <FromDrop options={registeredLocalGovs.map(lg => ({
+                <FormDrop options={registeredLocalGovs.map(lg => ({
                     value: lg._id,
                     label: lg.Name,
                     depends: lg.State._id

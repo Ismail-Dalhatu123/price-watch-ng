@@ -1,7 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
+  // geocodeByAddress,
+  // getLatLng,
 } from 'react-places-autocomplete';
 import AppContext from '../contexts/AppContext';
 import getDarkClass from '../utils/getDarkClass';

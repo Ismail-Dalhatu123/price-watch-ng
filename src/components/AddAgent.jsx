@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import AppContext from '../contexts/AppContext';
 import getDarkClass from '../utils/getDarkClass';
 import AdminContext from '../contexts/AdminContext';
-import FromDrop from '../form/FromDrop';
+import FormDrop from '../form/FormDrop';
 import { POST } from '../api/methods';
 import url from '../api/urls';
 import { toast } from 'react-toastify';
@@ -89,13 +89,13 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
                                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                                     name="email" placeholder="Email" />
                                 
-                                <FromDrop options={registeredStatesList.map(state => ({
+                                <FormDrop options={registeredStatesList.map(state => ({
                                     value: state._id,
                                     label: state.StateName
                                 }))} inputClass={getDarkClass('dark-white')}
                                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                                     name="state" placeholder="State Name" />
-                                <FromDrop options={registeredLocalGovs.map(lg => ({
+                                <FormDrop options={registeredLocalGovs.map(lg => ({
                                     value: lg._id,
                                     label: lg.Name,
                                     depends: lg.State._id
@@ -104,7 +104,7 @@ function AddAgent({ isVisivle = false, setIsVisible = () =>{} }) {
                                     inputClass={getDarkClass('dark-white')}
                                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                                     name="localGov" placeholder="Local Government" />
-                                <FromDrop options={registeredMarkets.map(mk => ({
+                                <FormDrop options={registeredMarkets.map(mk => ({
                                     value: mk._id,
                                     label: mk.Name,
                                     depends: mk.State._id

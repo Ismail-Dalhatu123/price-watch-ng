@@ -10,7 +10,7 @@ import url from '../api/urls';
 import AdminContext from '../contexts/AdminContext';
 import { toast } from 'react-toastify';
 import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
-import FormDrop from '../form/FromDrop'
+import FormDrop from '../form/FormDrop'
 
 const validationSchema = Yup.object().shape({
   stateName: Yup.string().required().label("State Name"),

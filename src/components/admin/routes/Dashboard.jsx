@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import Chart from '../../charts/Chart';
 import url from '../../../api/urls';
 import AppContext from '../../../contexts/AppContext';
-import { Doughnut, Line } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import DisplayText from '../../DisplayText';
 import AdminContext from '../../../contexts/AdminContext';
 import LineChart from '../../charts/Line';
 import getDarkClass from '../../../utils/getDarkClass';
 import Greetings from '../../Greetings';
 import Compare from '../../Compare';
+import Maps from '../../Maps';
+import CustomSelect from '../../CustomSelect';
 
 const generateArray = () => {
     const opt = []
@@ -57,7 +59,8 @@ function Dashboard(props) {
                     backgroundColor={theme === 'light' ? lightModeColors : darkModeColors}
                     borderColor={theme === 'light' ? lighBordertModeColors : darkBorderModeColors}
                 />
-                <div className={`stat_group sh sub_summary ${getDarkClass('dark-accent')}`}>
+                <div style={{paddingTop: 10}} className={`stat_group sh sub_summary ${getDarkClass('dark-accent')}`}>
+                    <CustomSelect className="select_date" title="Select Time" onSelect={(val) => console.log(val)} options={[{ label: 'Today', value: 1 }, { label: 'This Month', value: 2 }, { label: 'This Year',  value: 3 }]} />
                     <LineChart style={window.innerWidth > 700 ? {width: window.innerWidth * 0.5, height: 300, marginLeft: 'auto', marginRight: 'auto'} : {}} />
                 </div>
             </div>
@@ -79,6 +82,7 @@ function Dashboard(props) {
                         ],
                     }} /> */}
             </div>
+            <Maps />
         </div>
     );
 }

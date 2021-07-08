@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Form from '../form/Form';
 import FormInput from '../form/FormInput';
-import FromDrop from '../form/FromDrop';
+import FormDrop from '../form/FormDrop';
 import Submit from '../form/Submit';
 import getDarkClass from '../utils/getDarkClass';
 import AppContext from '../contexts/AppContext';
@@ -45,7 +45,7 @@ function AddQuantity({ isVisble = true, setIsVisible = () => {} }) {
                 validationSchema={validationSchema}
                 onSubmit={addQuantity}
                 initialValues={{ commodity: '', quantity: '' }}>
-                <FromDrop options={commoditiesList.map(com => ({
+                <FormDrop options={commoditiesList.map(com => ({
                     value: com._id,
                     label: com.CommodityName
                 }))}

@@ -3,7 +3,7 @@ import { useFormikContext } from "formik";
 import Error from "./Error";
 import CustomSelect from "../components/CustomSelect";
 
-export default function FromDrop({
+export default function FormDrop({
   name,
   className = "",
   inputClass = "",
