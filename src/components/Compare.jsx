@@ -6,7 +6,7 @@ import getDarkClass from '../utils/getDarkClass';
 import LineChart from './charts/Line';
 import CustomSelect from './CustomSelect';
 import Loader from './Loader';
-import { months as monthsInYear } from '../utils/days'
+import { months as monthsInYear, random_rgba, dateRange, randomIntFromInterval, getDates, lastDayInMonth } from '../utils/days'
 
 const generateArray = () => {
     const opt = []
@@ -15,33 +15,7 @@ const generateArray = () => {
     }
     return opt
 }
-function random_rgba() {
-    var o = Math.round, r = Math.random, s = 255;
-    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',1)';
-}
     
-function dateRange(startDate, endDate) {
-    var start      = startDate.split('-');
-    var end        = endDate.split('-');
-    var startYear  = parseInt(start[0]);
-    var endYear    = parseInt(end[0]);
-    var dates      = [];
-
-    for(var i = startYear; i <= endYear; i++) {
-        var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
-        var startMon = i === startYear ? parseInt(start[1])-1 : 0;
-        for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
-        var month = j+1;
-        var displayMonth = month < 10 ? '0'+month : month;
-        dates.push([i, displayMonth, '01'].join('-'));
-        }
-    }
-    return dates;
-}
-function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
 function Compare(props) {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
@@ -57,7 +31,7 @@ function Compare(props) {
     const [activeQuantities, setActiveQuantities] = useState([])
     const [selectedQuantities, setSelectedQuantities] = useState([])
     const [plotData, setPlotData] = useState({ labels: [], datasets: [] })
-    const [monthsList, setMonthsList] = useState([])
+    const [labelList, setLabelList] = useState([])
     const [loading, setLoading] = useState(false)
     const {
         registeredRegions,
@@ -68,26 +42,21 @@ function Compare(props) {
         commoditiesList,
         registeredLocalGovs
     } = useContext(AdminContext)
-    const plot = () => {
-        const months = dateRange(startDate, endDate)
-        const labels = months.map(d => ({label:`${monthsInYear[new Date(d).getMonth()]} ${new Date(d).getFullYear()}`, value: d}))
-        // const datasets = labels.map(l => {
-        //     return {
-        //         label: 'Price of Rice at Market 1',
-        //         data: generateArray(),
-        //         fill: false,
-        //         backgroundColor: 'rgba(0, 0, 255, 0.2)',
-        //         borderColor: 'rgba(0, 0, 255, 0.2)',
-        //     }
-        // })
+    const plot = (month = false) => {
+        const months = dateRange(month ? month.startDate : startDate, month ? month.endDate : endDate)
+        let labels = []
+        if (months.length <= 3) {
+            const d1 = new Date(month ? month.startDate : startDate)
+            const d2 = new Date(month ? month.endDate : endDate)
+            labels = getDates(d1, d2).map(d => ({ value: d, label: `${d.getDate()} ${monthsInYear[d.getMonth()]}, ${d.getFullYear()}`, isDay: true }))
+            if (!month) {
+                setLabelList(months.map(d => ({ label: `${monthsInYear[new Date(d).getMonth()]} ${new Date(d).getFullYear()}`, value: d })))
+            }
+        } else {
+            labels = months.map(d => ({ label: `${monthsInYear[new Date(d).getMonth()]} ${new Date(d).getFullYear()}`, value: d, isDay: false }))
+            setLabelList(labels)
+        }
         //for market generate obj -> data get average price for each month
-        // const datasets = [{
-        //     label: 'Price of Rice at Market 3',
-        //     data: months.map(m => randomIntFromInterval(10000, 13000)),
-        //     fill: false,
-        //     backgroundColor: random_rgba(),
-        //     borderColor: random_rgba(),
-        // }]
         const datasets = []
         for (let i = 0; i < activeMarkets.length; i++) {
             const mkt = registeredMarkets.find(m => m._id === activeMarkets[i]);
@@ -95,19 +64,19 @@ function Compare(props) {
                 const qnt = quantities.find(q => q._id === activeQuantities[j]);
                 const data = []
                 for (let k = 0; k < labels.length; k++) {
-                    const m = labels[k];
+                    //get Price of the quantity at this month
                     data.push(randomIntFromInterval(10000, 13000))
                 }
+                const rgb = random_rgba()
                 datasets.push({
-                    label: `Price of ${qnt.Quantity} at ${mkt.Name} | ${mkt.LocalGov.Name} | ${mkt.State.StateName}`,
+                    label: `Price of ${qnt.Quantity} of ${qnt.Commodity.CommodityName} at ${mkt.Name} | ${mkt.LocalGov.Name} | ${mkt.State.StateName}`,
                     data,
                     fill: false,
-                    backgroundColor: random_rgba(),
-                    borderColor: random_rgba(),
+                    backgroundColor: rgb.bg,
+                    borderColor: rgb.br,
                 })
             }
         }
-        setMonthsList(labels)
         setPlotData({datasets, labels: labels.map(m => m.label)})
     }
     return (
@@ -197,7 +166,7 @@ function Compare(props) {
                         title="Select Quantity" />
                     <br />
                     <div className="flex">
-                        <div onClick={plot} className="btn flex justify-center align-center">
+                        <div onClick={() => plot(false)} className="btn flex justify-center align-center">
                             {loading ? <Loader loading={loading} /> : 'Plot'}
                         </div>
                     </div>
@@ -242,7 +211,9 @@ function Compare(props) {
                 </div>
             </div>
             <div className="plotter">
-                {/* <CustomSelect onSelect={(val) => console.log(val)} title="Select Month" options={monthsList} /> */}
+                <div style={{width: 250, marginLeft: '1%'}}>
+                    <CustomSelect onSelect={(val) => val === 'all' ? plot(false) : plot({ startDate: val, endDate: lastDayInMonth(val) })} title="Select Option" options={[{value: 'all', label:'All Dates'},...labelList]} />
+                </div>
                 <LineChart data={plotData} style={window.innerWidth > 700 ? {width: window.innerWidth * 0.8, height: window.innerHeight - 350, marginLeft: 'auto', marginRight: 'auto', marginBottom: 50} : {}} />
             </div>
         </div>
