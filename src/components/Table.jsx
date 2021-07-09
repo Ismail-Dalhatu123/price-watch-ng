@@ -52,16 +52,18 @@ function Table({ title, options = [], data, column, deleteItem = () => {}, editI
         actions={options.length > 0 ? options.map(opt => ({
           ...opt,
           icon: tableIcons[opt.icon]
-          })) : [{
-              icon: tableIcons.Edit,
-              tooltip: 'Edit',
-              onClick: editItem
-              },
+        })) : [
               {
-              icon: tableIcons.Delete,
-              tooltip: 'Delete',
-              onClick: deleteItem
-              },] }
+                icon: tableIcons.Edit,
+                tooltip: 'Edit',
+                onClick: editItem
+              },
+              // {
+              //   icon: tableIcons.Delete,
+              //   tooltip: 'Delete',
+              //   onClick: deleteItem
+              // },
+        ]}
           title={title}
           columns={column}
           data={data}        

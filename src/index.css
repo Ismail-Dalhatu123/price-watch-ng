@@ -619,19 +619,22 @@ option {
   height: calc(100vh - 100px);
   background-color: var(--white);
   border-radius: 10px;
+  overflow: hidden;
+}
+.maps.dark-accent {
+  background-color: var(--dark-accent);
 }
 .desc {
   width: 30%;
   height: 200px;
-  background-color: var(--gray-dark);
+  /* background-color: var(--gray-dark); */
   border-radius: 10px;
   margin-left: auto;
   margin-right: 5%;
-  display: none;
 }
 .map_ {
-  flex: 1;
-  height: calc(100% - 200px);
+  width: 100%;
+  height: calc(100vh - 320px) !important;
 }
 .plotter {
   flex: 1;

@@ -9,12 +9,17 @@ import Table from '../../Table';
 function States() {
     const { registeredRegions, } = useContext(AdminContext)
     const [visible, setVisible] = useState(false)
+    const [update, setUpdate] = useState(false)
     return (
         <div>
-            <AddRegion isVisble={visible} setIsVisible={setVisible} />
+            <AddRegion update={update} isVisble={visible} setIsVisible={setVisible} />
             {!visible && <><div onClick={() => setVisible(true)} className={`btn_submit btn_add ${getDarkClass('dark-light')}`}>New Region</div>
             <Table
-                title="Regions"
+                    title="Regions"
+                    editItem={(a, b) => {
+                        setUpdate({ _id: b._id, regionName: b.RegionName, regionCode: b.RegionCode })
+                        setVisible(true)
+                    }}
                 column={[
                     // { title: 'ID', field: '_id' },
                     { title: 'Region Name', field: 'RegionName' },

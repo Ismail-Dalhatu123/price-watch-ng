@@ -13,7 +13,6 @@ export default function FormDrop({
 }) {
   const { setFieldTouched, errors, touched, setFieldValue, values } =
     useFormikContext();
-  console.log(depends);
   return (
     <>
       <CustomSelect

@@ -5,7 +5,7 @@ import Submit from '../form/Submit';
 import getDarkClass from '../utils/getDarkClass';
 import AppContext from '../contexts/AppContext';
 import * as Yup from 'yup'
-import { POST } from '../api/methods';
+import { POST, PUT } from '../api/methods';
 import url from '../api/urls';
 import AdminContext from '../contexts/AdminContext';
 import { toast } from 'react-toastify';
@@ -18,16 +18,24 @@ const validationSchema = Yup.object().shape({
   region: Yup.string().required().label("Region"),
 });
 
-function AddState({ isVisble = true, setIsVisible = () => {} }) {
+function AddState({ isVisble = true, setIsVisible = () => {}, update = false }) {
     const { theme } = useContext(AppContext)
     const { loadStates, registeredRegions } = useContext(AdminContext)
     const addState = async (det) => {
-        const res = await POST(url.states, det)
-        if (!res.ok) return toast.error(`${det.stateName} Already Registered`)
-        if (res.ok) {
-            loadStates()
+        if (update) {
+            const res = await PUT(url.states + '/' + update._id, det)
+            if (res.ok) {
+                toast.info('Updated')
+            } else {
+                toast.error('Not Updated')
+            }
+        } else {
+            const res = await POST(url.states, det)
+            if (!res.ok) return toast.error(`${det.stateName} Already Registered`)
+            if (res.ok) {
+                loadStates()
+            }
         }
-        
     }
     if (!isVisble) return null
     return (
@@ -38,13 +46,13 @@ function AddState({ isVisble = true, setIsVisible = () => {} }) {
                     <ApartmentRoundedIcon />
             </div>
             <h3 className={`text-center ${getDarkClass('dark-white')}`}>Register New State</h3>
-                        <div style={{fontWeight: 'bold', cursor: 'pointer', marginTop: 10}} onClick={() => setIsVisible(false)} className={`flex justify-center align-center mb-20`}>
+                        <div style={{fontWeight: 'bold', cursor: 'pointer', marginTop: 10}} onClick={() => setIsVisible()} className={`flex justify-center align-center mb-20`}>
                             cancel
                         </div>        
             <Form
                 validationSchema={validationSchema}
                 onSubmit={addState}
-                initialValues={{ stateName: '', stateCode: '', region: '' }}>
+                initialValues={{ stateName: update ? update.stateName : '', stateCode: update ? update.stateCode : '', region: update? update.region : '60e2c37d6976fe0015135b78' }}>
                 <FormInput
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
@@ -60,7 +68,7 @@ function AddState({ isVisble = true, setIsVisible = () => {} }) {
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                     name="region" placeholder="Region" />
-                <Submit title="Add State" />
+                <Submit title={update ? 'Update': "Add State"} />
             </Form>
         </div>
     );

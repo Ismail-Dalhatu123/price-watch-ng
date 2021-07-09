@@ -9,19 +9,27 @@ import Table from '../../Table';
 function States() {
     const { registeredStatesList, } = useContext(AdminContext)
     const [visible, setVisible] = useState(false)
+    const [update, setUpdate] = useState(false)
     return (
         <div>
-            <AddState isVisble={visible} setIsVisible={setVisible} />
+            <AddState update={update} isVisble={visible} setIsVisible={() => {
+                setVisible(false)
+                setUpdate(false)
+            }} />
             {!visible && <><div onClick={() => setVisible(true)} className={`btn_submit btn_add ${getDarkClass('dark-light')}`}>New State</div>
-            <Table
+                <Table
+                    editItem={(a, b) => {
+                        setUpdate({ stateName: b.StateName, _id: b._id, stateCode: b.StateCode, region: b.Region._id })
+                        setVisible(true)
+                    }}
                 title="States"
                 column={[
                     // { title: 'ID', field: '_id' },
                     { title: 'State Name', field: 'StateName' },
                     { title: 'State Code', field: 'StateCode' },
-                    { title: 'Region', field: 'Region' },
+                    { title: 'Region', field: 'RegionOp' },
                 ]}
-                data={registeredStatesList.map(state => ({...state, Region: state.Region.RegionName }))} /></>}
+                data={registeredStatesList.map(state => ({...state, RegionOp: state.Region.RegionName }))} /></>}
         </div>
     );
 }

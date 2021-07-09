@@ -221,31 +221,3 @@ function Compare(props) {
 }
 
 export default Compare;
-
-
-// {
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-//   datasets: [
-//     {
-//       label: 'Price of Rice at Market',
-//       data: generateArray(),
-//       fill: false,
-//       backgroundColor: 'rgba(255, 0, 0, 0.2)',
-//       borderColor: 'rgba(255, 0, 0, 0.2)',
-//     },
-//     {
-//       label: 'Price of Rice at Market 2',
-//       data: generateArray(),
-//       fill: false,
-//       backgroundColor: 'rgba(0, 255, 0, 0.2)',
-//       borderColor: 'rgba(0, 255, 0, 0.2)',
-//     },
-//     {
-//       label: 'Price of Rice at Market 3',
-//       data: generateArray(),
-//       fill: false,
-//       backgroundColor: 'rgba(0, 0, 255, 0.2)',
-//       borderColor: 'rgba(0, 0, 255, 0.2)',
-//     },
-//   ],
-// }

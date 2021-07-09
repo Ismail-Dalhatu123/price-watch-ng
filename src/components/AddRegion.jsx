@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   regionCode: Yup.string().required().label("Region Code"),
 });
 
-function AddRegion({ isVisble = true, setIsVisible = () => {} }) {
+function AddRegion({ isVisble = true, setIsVisible = () => {}, update = false }) {
     const { theme } = useContext(AppContext)
     const { loadRegions } = useContext(AdminContext)
     const addRegion = async (det) => {
@@ -43,7 +43,7 @@ function AddRegion({ isVisble = true, setIsVisible = () => {} }) {
             <Form
                 validationSchema={validationSchema}
                 onSubmit={addRegion}
-                initialValues={{ regionName: '', regionCode: '' }}>
+                initialValues={{ regionName: update ? update.regionName : '', regionCode: update ? update.regionCode : '' }}>
                 <FormInput
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
@@ -52,7 +52,7 @@ function AddRegion({ isVisble = true, setIsVisible = () => {} }) {
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}
                     name="regionCode" placeholder="Region Code" />
-                <Submit title="Register Region" />
+                <Submit title={update ? 'Update': "Register Region"} />
             </Form>
         </div>
     );

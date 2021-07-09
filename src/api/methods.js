@@ -18,6 +18,15 @@ export const POST = async (url, params = {}, axiosConfig = {}) => {
   }
 };
 
+export const PUT = async (url, params = {}, axiosConfig = {}) => {
+  try {
+    const response = await client.put(url, params, axiosConfig);
+    return { response, ok: true };
+  } catch (error) {
+    return { ok: false, error };
+  }
+};
+
 export const PATCH = async (url, params = {}, axiosConfig = {}) => {
   try {
     const response = await client.patch(url, params, axiosConfig);
