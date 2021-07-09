@@ -9,6 +9,7 @@ export default function FromPlaces({ name }) {
   return (
     <>
       <Places
+        setLatLng={(lntlng) => setFieldValue("locationLatLng", lntlng)}
         autoComplete="off"
         setAddress={(value) => {
           setFieldTouched(name);

@@ -14,20 +14,25 @@ import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
 import FormDrop from '../form/FormDrop';
 
 const validationSchema = Yup.object().shape({
-  state: Yup.string().required().label("State"),
-  name: Yup.string().required().label("Name"),
-  localGov: Yup.string().required().label("Local Government"),
-  location: Yup.string().required().label("Location"),
+    state: Yup.string().required().label("State"),
+    name: Yup.string().required().label("Name"),
+    localGov: Yup.string().required().label("Local Government"),
+    location: Yup.string().required().label("Location"),
+    locationLatLng: Yup.object()
 });
 
-function AddMarket({ isVisble = true, setIsVisible = () => {} }) {
+function AddMarket({ isVisble = true, setIsVisible = () => {}, update = false }) {
     const { theme } = useContext(AppContext)
     const { loadMarkets, registeredStatesList, registeredLocalGovs } = useContext(AdminContext)
     const addMarket = async (det) => {
-        const res = await POST(url.market, det)
-        if (!res.ok) return toast.error(`${det.name} Already Registered`)
-        if (res.ok) {
-            loadMarkets()
+        if (update) {
+            
+        } else {
+            const res = await POST(url.market, det)
+            if (!res.ok) return toast.error(`${det.name} Already Registered`)
+            if (res.ok) {
+                loadMarkets()
+            }
         }
     }
     if (!isVisble) return null
@@ -45,7 +50,7 @@ function AddMarket({ isVisble = true, setIsVisible = () => {} }) {
             <Form
                 validationSchema={validationSchema}
                 onSubmit={addMarket}
-                initialValues={{ name: '', state: '', localGov: '' , location: '' }}>
+                initialValues={{ name: update ? update.Name : '', state: update ? update.State : '', localGov: update ? update.localGov : '' , location: update ? update.Location : '', locationLatLng: update ? update.locationLatLng : '' }}>
                 <FormInput
                     inputClass={getDarkClass('dark-white')}
                     className={`light-white-bg mx-50 ${getDarkClass('dark-accent')}`}

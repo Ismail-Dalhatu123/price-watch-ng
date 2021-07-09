@@ -169,19 +169,20 @@ function Home(props) {
                     <div className="router_body">
                         <Header />
                         <div className="routes">
-                            {loading ? <Loader loading /> : (<Switch>
-                                <Route path={url.agents.base} component={Agents} />
-                                <Route path={url.states} component={States} />
-                                <Route path={url.region} component={Regions} />
-                                <Route path={url.market} component={Markets} />
-                                <Route path={url.commodities} component={Commodities} />
-                                <Route path={url.localGov} component={LocalGovs} />
-                                <Route path={url.quantities} component={Quantities} />
-                                <Route path={url.categories} component={Categories} />
-                                <Route path={url.admins} component={Admins} />
-                                <Route path={url.agents.submissions.base} component={Submissions} />
-                                <Route exact path="/" component={Dashboard} />
-                            </Switch>)}
+                            {loading ? <Loader loading /> : (
+                                <Switch>
+                                    <Route path={url.agents.base} component={Agents} />
+                                    <Route path={url.states} component={States} />
+                                    <Route path={url.region} component={Regions} />
+                                    <Route path={url.market} component={Markets} />
+                                    <Route path={url.commodities} component={Commodities} />
+                                    <Route path={url.localGov} component={LocalGovs} />
+                                    <Route path={url.quantities} component={Quantities} />
+                                    <Route path={url.categories} component={Categories} />
+                                    <Route path={url.admins} component={Admins} />
+                                    <Route path={url.agents.submissions.base} component={Submissions} />
+                                    <Route exact path="/" component={Dashboard} />
+                                </Switch>)}
                         </div>
                     </div>
                 </div>

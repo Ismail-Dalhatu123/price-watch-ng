@@ -1,7 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete, {
-  // geocodeByAddress,
-  // getLatLng,
+  geocodeByAddress,
+  getLatLng,
 } from 'react-places-autocomplete';
 import AppContext from '../contexts/AppContext';
 import getDarkClass from '../utils/getDarkClass';
@@ -19,10 +19,10 @@ class Places extends React.Component {
  
     handleSelect = address => {
       this.props.setAddress(address)
-    // geocodeByAddress(address)
-    //   .then(results => getLatLng(results[0]))
-    //   .then(latLng => this.props.onChange(latLng))
-    //   .catch(error => console.error('Error', error));
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => this.props.setLatLng(latLng))
+      .catch(error => console.error('Error', error));
   };
  
   render() {

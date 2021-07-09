@@ -7,27 +7,23 @@ import { toast } from 'react-toastify';
 import AdminContext from '../contexts/AdminContext';
 import getDarkClass from '../utils/getDarkClass';
 import Map from './Map';
+import Loader from './Loader';
 
 function Maps(props) {
     const { registeredMarkets } = useContext(AdminContext)
     const [marketMarkers, setMarketMarkers] = useState([])
-
+    const [isLoading, setIsLoading] = useState(true)
     const loadMarkers = () => {
         const list = []
         for (let i = 0; i < registeredMarkets.length; i++) {
             const mkt = registeredMarkets[i];
-            // const res = await geocodeByAddress(mkt.Location)
-            // const ltn = await getLatLng(res[0])
-            // console.log(ltn)
-            // geocodeByAddress(mkt.Location)
-            //     .then(result => getLatLng(result[0]))
-            //     .then(latlng => list.push(latlng))
-            //     .catch(err => console.log('An error occured', err))
+            list.push(mkt.LocationLatLng)
+            console.log(mkt)
         
         }
-        setMarketMarkers(list)
         console.log(list)
-        console.log(registeredMarkets)
+        setMarketMarkers(list)
+        setIsLoading(false)
     }
     useEffect(() => {
         loadMarkers()
@@ -36,7 +32,7 @@ function Maps(props) {
         <div className={`maps sh flex flex-column justify-center align-center ${getDarkClass('dark-accent')}`}>
             <div className="desc sh"></div>
             <div className="map_">
-                <Map />
+                {isLoading ? <Loader loading /> : <Map markars = {marketMarkers} />}
             </div>
         </div>
     );
