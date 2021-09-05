@@ -652,3 +652,33 @@ option {
     transform: rotate(-360deg);
   }
 }
+.map_pup_up {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+.map_container {
+  width: 80%;
+  height: 90%;
+  background-color: var(--white);
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-top: 2.5%;
+}
+.close_btn {
+  /* position: absolute;
+  top: 10px;
+  right: 10px; */
+  margin-top: 10px;
+  margin-left: auto;
+  /* margin-right: 10px; */
+  background-color: var(--gray-dark);
+  border-radius: 5px;
+  border-color: var(--gray-dark);
+}
