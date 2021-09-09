@@ -28,7 +28,7 @@ function Markets(props) {
                 icon: "Map",
                 tooltip: "View location on map",
                 onClick: (a, b) => {
-                  setCoords(b.Location);
+                  setCoords(b.LocationLatLng);
                 },
               },
             ]}
