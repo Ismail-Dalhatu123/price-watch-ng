@@ -13,8 +13,8 @@ function GoogleMap({ google, width, height, markers = [] }) {
         height,
       }}
       initialCenter={{
-        lat: 10.2886879,
-        lng: 11.1653817,
+        lat: markers[0].lat,
+        lng: markers[0].lng,
       }}
       zoom={14}
       styles={theme === "light" ? defaultMap : [...mapStyles, ...defaultMap]}

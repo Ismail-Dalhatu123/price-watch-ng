@@ -10,7 +10,7 @@ const MapPopup = ({ coords, closeMap = () => {} }) => {
       </button>
       <div className="map_container">
         <GoogleMap
-          markers={[{ lat: coords.Latitude, lng: coords.Longitude }]}
+          markers={[{ lat: coords.latitude, lng: coords.longitude }]}
           width={window.innerWidth * 0.8}
           height={window.innerHeight * 0.9}
         />
