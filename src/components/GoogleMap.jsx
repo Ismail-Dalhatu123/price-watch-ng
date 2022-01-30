@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 import { defaultMap, mapStyles } from "../utils/mapstyles";
 
-function GoogleMap({ google, width, height, markers = [] }) {
+function GoogleMap({ google, width, height, markers = [], hideText = true }) {
   const { theme } = useContext(AppContext);
   return (
     <Map
@@ -17,10 +17,16 @@ function GoogleMap({ google, width, height, markers = [] }) {
         lng: markers[0].lng,
       }}
       zoom={14}
-      styles={theme === "light" ? defaultMap : [...mapStyles, ...defaultMap]}
+      styles={
+        theme === "light"
+          ? hideText
+            ? defaultMap
+            : [defaultMap[1]]
+          : [...mapStyles, ...(hideText ? defaultMap : [defaultMap[1]])]
+      }
     >
-      {markers.map((mak) => (
-        <Marker key={mak._id} position={mak} />
+      {markers.map((mak, idx) => (
+        <Marker key={idx} position={mak} />
       ))}
     </Map>
   );

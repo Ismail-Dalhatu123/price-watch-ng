@@ -147,7 +147,7 @@ function Dashboard(props) {
                         ],
                     }} /> */}
       </div>
-      {/* <Maps /> */}
+      <Maps />
     </div>
   );
 }

@@ -8,7 +8,7 @@ import decodeJWT from "./utils/decodeJWT";
 
 function App(props) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ id: 1 });
 
   const restoreUser = () => {
     const token = decodeJWT();
