@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../Nav";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Dashboard from "./routes/Dashboard";
-import Header from "../Header";
-import getDarkClass from "../../utils/getDarkClass";
+// import Nav from "../Nav";
+// import { BrowserRouter, Switch, Route } from "react-router-dom";
+// import Dashboard from "./routes/Dashboard";
+// import Header from "../Header";
+// import getDarkClass from "../../utils/getDarkClass";
 import url from "../../api/urls";
 import { GET } from "../../api/methods";
 import { toast } from "react-toastify";
-import Loader from "../Loader";
-import AdminContext from "../../contexts/AdminContext";
+// import Loader from "../Loader";
+// import AdminContext from "../../contexts/AdminContext";
 // import Agents from "./routes/Agents";
 // import States from "./routes/States";
 // import Regions from "./routes/Regions";
@@ -18,7 +18,7 @@ import AdminContext from "../../contexts/AdminContext";
 // import LocalGovs from "./routes/LocalGov";
 // import Categories from "./routes/Categories";
 // import Admins from "./routes/Admins";
-import decodeJWT from "../../utils/decodeJWT";
+// import decodeJWT from "../../utils/decodeJWT";
 import Submissions from "./routes/Submissions";
 
 function Home(props) {
@@ -33,7 +33,7 @@ function Home(props) {
   const [commoditiesList, setCommodities] = useState([]);
 
   useEffect(() => {
-    const token = decodeJWT();
+    // const token = decodeJWT();
     // if(!token.succes) window.location = '/'
   }, []);
 
@@ -161,63 +161,64 @@ function Home(props) {
     loadCategories(true);
     setLoading(false);
   }, []);
-  return (
-    <AdminContext.Provider
-      value={{
-        categories,
-        loadCategories,
-        commoditiesList,
-        quantities,
-        loadQuantities,
-        loadCommodities,
-        registeredStatesList,
-        registeredRegions,
-        loadRegions,
-        registeredMarkets,
-        loadMarkets,
-        loadStates,
-        registeredLocalGovs,
-        loadLocalGovs,
-        registeredAgents,
-        loadAgents,
-      }}
-    >
-      <BrowserRouter>
-        <div
-          className={`container bg-light-gray flex p-10 ${getDarkClass(
-            "bg-dark"
-          )}`}
-        >
-          <Nav />
-          <div className="router_body">
-            <Header />
-            <div className="routes">
-              {loading ? (
-                <Loader loading />
-              ) : (
-                <Switch>
-                  {/* <Route path={url.agents.base} component={Agents} />
-                  <Route path={url.states} component={States} />
-                  <Route path={url.region} component={Regions} />
-                  <Route path={url.market} component={Markets} />
-                  <Route path={url.commodities} component={Commodities} />
-                  <Route path={url.localGov} component={LocalGovs} />
-                  <Route path={url.quantities} component={Quantities} />
-                  <Route path={url.categories} component={Categories} />
-                  <Route path={url.admins} component={Admins} /> */}
-                  <Route
-                    path={url.agents.submissions.base}
-                    component={Submissions}
-                  />
-                  <Route exact path="/" component={Dashboard} />
-                </Switch>
-              )}
-            </div>
-          </div>
-        </div>
-      </BrowserRouter>
-    </AdminContext.Provider>
-  );
+  return <h2>Cool</h2>;
+  // return (
+  //   <AdminContext.Provider
+  //     value={{
+  //       categories,
+  //       loadCategories,
+  //       commoditiesList,
+  //       quantities,
+  //       loadQuantities,
+  //       loadCommodities,
+  //       registeredStatesList,
+  //       registeredRegions,
+  //       loadRegions,
+  //       registeredMarkets,
+  //       loadMarkets,
+  //       loadStates,
+  //       registeredLocalGovs,
+  //       loadLocalGovs,
+  //       registeredAgents,
+  //       loadAgents,
+  //     }}
+  //   >
+  //     <BrowserRouter>
+  //       <div
+  //         className={`container bg-light-gray flex p-10 ${getDarkClass(
+  //           "bg-dark"
+  //         )}`}
+  //       >
+  //         <Nav />
+  //         <div className="router_body">
+  //           <Header />
+  //           <div className="routes">
+  //             {loading ? (
+  //               <Loader loading />
+  //             ) : (
+  //               <Switch>
+  //                 {/* <Route path={url.agents.base} component={Agents} />
+  //                 <Route path={url.states} component={States} />
+  //                 <Route path={url.region} component={Regions} />
+  //                 <Route path={url.market} component={Markets} />
+  //                 <Route path={url.commodities} component={Commodities} />
+  //                 <Route path={url.localGov} component={LocalGovs} />
+  //                 <Route path={url.quantities} component={Quantities} />
+  //                 <Route path={url.categories} component={Categories} />
+  //                 <Route path={url.admins} component={Admins} /> */}
+  //                 <Route
+  //                   path={url.agents.submissions.base}
+  //                   component={Submissions}
+  //                 />
+  //                 <Route exact path="/" component={Dashboard} />
+  //               </Switch>
+  //             )}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </BrowserRouter>
+  //   </AdminContext.Provider>
+  // );
 }
 
 export default Home;
