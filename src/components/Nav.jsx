@@ -29,6 +29,7 @@ function Nav(props) {
       className={`${isCollaps ? "collaps" : ""} ${getDarkClass(
         "dark-accent nav-dark"
       )}`}
+      style={{ backgroundColor: "white" }}
     >
       <div className={`logo_cnt ${isCollaps ? "cl" : ""}`}>
         <img src={logo} alt="logo" />

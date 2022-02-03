@@ -72,13 +72,23 @@ a {
 }
 .form_input,
 .btn_submit {
-  background-color: var(--gray);
+  background-color: #2bb158;
   width: 100%;
   height: 45px;
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
   cursor: pointer;
+}
+.form_input {
+  background-color: rgba(43, 177, 88, 0.9);
+}
+.form_input input {
+  color: white !important;
+}
+.btn_submit {
+  background-color: #d3ae05 !important;
+  border-color: #d3ae05 !important;
 }
 .input {
   border: none;
@@ -87,6 +97,9 @@ a {
   background: none;
   font-weight: bold;
   flex: 1;
+}
+.i-w {
+  color: white !important;
 }
 .btn_submit {
   border-radius: 5px;
@@ -167,7 +180,7 @@ header {
   width: 50px;
   height: 50px;
   color: var(--white);
-  background-color: var(--gray-dark);
+  background-color: #2bb158;
   border-radius: 50%;
 }
 .nav_link {
@@ -176,7 +189,7 @@ header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  color: var(--gray-dark);
+  color: #2bb158;
   font-weight: bold;
   border-radius: 5px;
   padding: 0 10px;
@@ -188,7 +201,7 @@ header {
   max-width: 20vw;
   border-radius: 10px;
   position: relative;
-  background-color: var(--indigo);
+  background-color: #2bb158;
   color: var(--white);
   margin-bottom: 10px;
 }
@@ -224,7 +237,7 @@ nav.collaps .nav_link span {
 }
 .nav_link:hover,
 .nav_link.active {
-  background-color: var(--dark-accent);
+  background-color: #2bb158;
   color: var(--white);
 }
 .display_text {
@@ -548,7 +561,7 @@ option {
 .btn {
   width: 100%;
   height: 50px;
-  background-color: var(--indigo);
+  background-color: #2bb158;
   border-radius: 5px;
   color: var(--white);
   font-weight: bold;

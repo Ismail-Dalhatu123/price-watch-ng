@@ -4,7 +4,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import { mapStyles, defaultMap } from "../utils/mapstyles";
 import { useContext } from "react";
 
-function AppMap({ google, markars = [] }) {
+function AppMap({ google, markars = [], onClick = () => {} }) {
   const { theme } = useContext(AppContext);
   return (
     <div
@@ -19,8 +19,8 @@ function AppMap({ google, markars = [] }) {
     >
       <Map
         initialCenter={{
-          lat: 10.2886879,
-          lng: 11.1653817,
+          lat: 9.082,
+          lng: 8.6753,
         }}
         styles={theme === "light" ? defaultMap : [...mapStyles, ...defaultMap]}
         style={{
@@ -29,10 +29,10 @@ function AppMap({ google, markars = [] }) {
           borderRadius: 10,
         }}
         google={google}
-        zoom={14}
+        zoom={7}
       >
         {markars.map((mak) => (
-          <Marker key={mak._id} position={mak} />
+          <Marker onClick={() => onClick(mak)} key={mak._id} position={mak} />
         ))}
 
         {/* <InfoWindow onClose={this.onInfoWindowClose}>

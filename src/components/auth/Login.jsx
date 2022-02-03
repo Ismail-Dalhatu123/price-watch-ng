@@ -66,14 +66,14 @@ function Login(props) {
             initialValues={{ email: "", password: "" }}
           >
             <FormInput
-              inputClass={getDarkClass("dark-white")}
+              inputClass={`${getDarkClass("dark-white")} i-w`}
               className={getDarkClass("bg-dark-gray")}
               // type="email"
               name="email"
               placeholder="Email"
             />
             <FormInput
-              inputClass={getDarkClass("dark-white")}
+              inputClass={`${getDarkClass("dark-white")} i-w`}
               type="password"
               className={getDarkClass("bg-dark-gray")}
               name="password"

@@ -5,6 +5,7 @@ import { defaultMap, mapStyles } from "../utils/mapstyles";
 
 function GoogleMap({ google, width, height, markers = [], hideText = true }) {
   const { theme } = useContext(AppContext);
+  console.log(markers);
   return (
     <Map
       google={google}
