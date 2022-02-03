@@ -685,3 +685,23 @@ option {
   border-color: var(--gray-dark);
   z-index: 100000;
 }
+.logo_cnt {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_cnt img {
+  width: 80px;
+  height: 80px;
+}
+.logo_cnt.cl {
+  /* width: 1; */
+  height: 60px;
+}
+.logo_cnt.cl img {
+  width: 40px;
+  height: 40px;
+}
